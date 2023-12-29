@@ -1,0 +1,71 @@
+{
+    "name": "admins",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vue-tsc && vite build",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "vue": "^3.3.11"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.23.6",
+        "@babel/eslint-parser": "^7.23.3",
+        "@typescript-eslint/eslint-plugin": "^6.16.0",
+        "@typescript-eslint/parser": "^6.16.0",
+        "@vitejs/plugin-vue": "^4.5.2",
+        "@vue/eslint-config-typescript": "^12.0.0",
+        "eslint": "^8.56.0",
+        "eslint-config-alloy": "^5.1.2",
+        "eslint-plugin-vue": "^9.19.2",
+        "prettier": "^3.1.1",
+        "stylelint": "^16.1.0",
+        "stylelint-config-standard": "^36.0.0",
+        "stylelint-config-standard-vue": "^1.0.0",
+        "typescript": "^5.2.2",
+        "vite": "^5.0.8",
+        "vue-eslint-parser": "^9.3.2",
+        "vue-tsc": "^1.8.25"
+    },
+    "prettier": {
+        "semi": true,
+        "singleQuote": true,
+        "arrowParens": "avoid"
+    },
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "browser": true
+        },
+        "parser": "vue-eslint-parser",
+        "parserOptions": {
+            "parser": {
+                "js": "@babel/eslint-parser",
+                "jsx": "@babel/eslint-parser",
+                "ts": "@typescript-eslint/parser",
+                "tsx": "@typescript-eslint/parser"
+            }
+        },
+        "extends": [
+            "alloy",
+            "alloy/vue",
+            "alloy/typescript"
+        ],
+        "rules": {
+            "@typescript-eslint/prefer-optional-chain": "off"
+        }
+    },
+    "stylelint": {
+        "root": true,
+        "extends": [
+            "stylelint-config-standard",
+            "stylelint-config-standard-vue"
+        ],
+        "rules": {
+            "declaration-property-value-no-unknown": true
+        }
+    }
+}
