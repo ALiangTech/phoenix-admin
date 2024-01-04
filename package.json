@@ -9,7 +9,10 @@
     "preview": "vite preview",
     "eslint": "eslint --ext .js,.ts,.tsx,.vue .",
     "format": "prettier --write .",
-    "stylelint": "stylelint src/**/*.{css,vue}"
+    "stylelint": "stylelint src/**/*.{css,vue}",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "vue": "^3.4.3"
@@ -21,6 +24,7 @@
     "@typescript-eslint/parser": "^6.17.0",
     "@vitejs/plugin-vue": "^4.6.2",
     "@vue/eslint-config-typescript": "^12.0.0",
+    "cypress": "^13.6.2",
     "eslint": "^8.56.0",
     "eslint-config-alloy": "^5.1.2",
     "eslint-plugin-vue": "^9.19.2",
@@ -32,6 +36,7 @@
     "stylelint-config-standard-vue": "^1.0.0",
     "typescript": "^5.3.3",
     "vite": "^5.0.10",
+    "vitest": "^1.1.1",
     "vue-eslint-parser": "^9.3.2",
     "vue-tsc": "^1.8.27"
   },
@@ -74,10 +79,12 @@
     }
   },
   "lint-staged": {
-    "*.{js,ts,tsx,vue,css}": [
-      "eslint",
-      "prettier --write",
+    "*.{vue,css}": [
       "stylelint **/*.{css,vue}"
+    ],
+    "*.{js,ts,tsx,vue}": [
+      "eslint",
+      "prettier --write"
     ]
   },
   "simple-git-hooks": {
