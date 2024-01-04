@@ -1,4 +1,4 @@
 // sum.js
-export function sum(a, b) {
+export function sum(a: number, b: number) {
   return a + b;
 }

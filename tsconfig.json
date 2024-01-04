@@ -12,6 +12,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
+    "types": ["cypress"],
 
     /* Linting */
     "strict": true,
