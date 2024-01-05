@@ -1,18 +1,68 @@
-# Vue 3 + TypeScript + Vite
+# 项目简介
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+为了方便快速搭建管理系统类项目，抽离常用的功能组合起来
 
-## Recommended IDE Setup
+项目采用多实例模式 整体分离成俩部分： 登录部分 + 业务部分 主要是方便权限计算
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-## Type Support For `.vue` Imports in TS
+## 技术栈
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+vite + vue3 + ts + vue-router
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+css 使用[原子css](https://antfu.me/posts/reimagine-atomic-css-zh)方式: [unocss引擎](https://github.com/unocss/unocss)
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+## 测试
+
+非浏览逻辑 走vitest测试
+
+组件测试 和 e2e 走cypress
+
+## 规范
+
+- 语法规范默认采用的是腾讯发布的一版规范 [alloy/vue](https://github.com/AlloyTeam/eslint-config-alloy/blob/master/README.zh-CN.md)
+- 风格规范默认采用Prettier的官方默认风格
+- 标签规范采用的是stylelint的[stylelint-config-recommended-vue](https://github.com/ota-meshi/stylelint-config-recommended-vue)
+
+## 项目依赖更新
+
+为保持项目活性 定期执行pnpm outdated 查看需要升级的三方依赖
+可以直接运行pnpm upp 来同步更新第三放包 进行大版本升级
+
+**注意**
+：大版本升级一定要去查看对应版本的注意事项
+如果是X 修改 一定要注意
+X 是主版本号(major)：修改了不兼容的 API
+Y 是次版本号(minor)：新增了向下兼容的功能
+Z 为修订号(patch)：修正了向下兼容的问题
+
+## 防止路由嵌套太深 项目只配置到二级菜单
+
+三级后的菜单 建议使用component 组件来实现
+
+如果真有需要 手动修改菜单组件
+
+## 接口响应规范
+
+```typescript
+  interface response {
+    data: object | null,
+    error: error[],
+    code: number
+  }
+```
+
+
+### 多实例渲染模式
+
+登录界面作为一个单独实例进行渲染 类型 login
+具体业务作为一个业务实例进行渲染 类型 admin
+
+
+
+
+
+
+
+
+
+

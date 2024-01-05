@@ -5,10 +5,19 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 import { compression } from 'vite-plugin-compression2';
 import { createHtmlPlugin } from 'vite-plugin-html';
 import { visualizer } from 'rollup-plugin-visualizer';
+import path from 'path';
+
 export default defineConfig(({ command }) => {
   // 通用配置
   const common = {
     plugins: [vue(), vueJsx()],
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+        '@admin': path.resolve(__dirname, './src/instances/admin'),
+        '@login': path.resolve(__dirname, './src/instances/login'),
+      },
+    },
     test: {},
   };
   if (command === 'serve') {
