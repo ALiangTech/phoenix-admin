@@ -1,5 +1,6 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import 'virtual:uno.css';
+import '@unocss/reset/normalize.css';
+import './style.css';
+import MountLoginInstance from './instances/login/login';
 
-createApp(App).mount('#app')
+MountLoginInstance();
