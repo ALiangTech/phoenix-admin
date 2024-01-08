@@ -1,11 +1,21 @@
 <template>
   <n-loading-bar-provider>
-    <NConfigProvider :theme="darkTheme" abstract>
+    <NConfigProvider
+      :theme="theme.theme"
+      :theme-overrides="theme.themeOverrides"
+      abstract
+    >
       <router-view></router-view>
     </NConfigProvider>
-    <z-smart-island></z-smart-island>
+    <z-smart-island @change="handleChange"></z-smart-island>
   </n-loading-bar-provider>
 </template>
 <script setup lang="ts">
-import { darkTheme } from 'naive-ui';
+import useTheme, { setTheme } from './theme/index.ts';
+const { theme } = useTheme();
+function handleChange(type: string) {
+  if (type === 'set-theme') {
+    setTheme();
+  }
+}
 </script>
