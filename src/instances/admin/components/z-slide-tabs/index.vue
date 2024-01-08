@@ -20,7 +20,6 @@
 import { gsap } from 'gsap';
 import { nextTick, ref, watchEffect } from 'vue';
 import { vElementSize } from '@vueuse/components';
-
 const props = withDefaults(defineProps<Props>(), {
   list: () => [
     { label: '用用户', value: 'accounts' },
@@ -31,7 +30,6 @@ const emits = defineEmits(['update:modelValue', 'change']);
 defineOptions({
   name: 'ZSlideTabs',
 });
-
 interface ListItem {
   label: string;
   value: number | string;

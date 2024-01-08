@@ -4,9 +4,11 @@ import type { App } from 'vue';
 import APP from './App.vue';
 import { MountRouterToApp } from './routers';
 import { registerPermission } from './plugins';
+import registerGlobalComponents from './components/index.ts';
 
 export default function MountAdminInstance() {
   const app: App = createApp(APP);
+  registerGlobalComponents(app);
 
   // 路由挂载
   MountRouterToApp(app).then();
