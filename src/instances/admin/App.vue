@@ -3,6 +3,7 @@
     <NConfigProvider
       :theme="theme.theme"
       :theme-overrides="theme.themeOverrides"
+      inline-theme-disabled
       abstract
     >
       <router-view></router-view>
