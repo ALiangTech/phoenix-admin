@@ -1,11 +1,13 @@
 <template>
-  <n-button @click="show = true"> 创建角色 </n-button>
-  <!-- 创建角色侧边弹窗 -->
-  <n-drawer v-model:show="show" :width="540">
-    <n-drawer-content title="创建角色" closable>
-      <ZNestChecked :data="permissions"></ZNestChecked>
-    </n-drawer-content>
-  </n-drawer>
+  <div>
+    <n-button @click="show = true"> 创建角色 </n-button>
+    <!-- 创建角色侧边弹窗 -->
+    <n-drawer v-model:show="show" :width="540">
+      <n-drawer-content title="创建角色" closable>
+        <ZNestChecked :data="permissions"></ZNestChecked>
+      </n-drawer-content>
+    </n-drawer>
+  </div>
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
