@@ -1,16 +1,14 @@
 <template>
-  <section class="pt-16px">
-    <!--    <img :src="LogoSrc" alt="logo图片" class="w-100% h-48px object-contain" />-->
-    <nav class="pt-16px">
-      <n-menu
-        v-model:value="activeKey"
-        :collapsed-icon-size="22"
-        :collapsed-width="64"
-        :options="options"
-        responsive
-      />
-    </nav>
-  </section>
+  <!--    <img :src="LogoSrc" alt="logo图片" class="w-100% h-48px object-contain" />-->
+  <nav class="pt-16px">
+    <n-menu
+      v-model:value="activeKey"
+      :collapsed-icon-size="22"
+      :collapsed-width="64"
+      :options="options"
+      responsive
+    />
+  </nav>
 </template>
 
 <script lang="ts" setup>
