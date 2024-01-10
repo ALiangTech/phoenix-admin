@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, unref } from 'vue';
+import Setting from './setting/index.vue';
 const name = ref('HAN');
 const showModal = ref(false);
 function openSettingDialog() {
@@ -27,10 +28,10 @@ function openSettingDialog() {
     </div>
   </section>
   <n-modal v-model:show="showModal" :mask-closable="false">
-    <div>
-      showModal
-      <button @click="openSettingDialog">ss</button>
-    </div>
+    <section class="w-50vw h-50vh">
+      <Setting></Setting>
+      <!--      <button @click="openSettingDialog">ss</button>-->
+    </section>
   </n-modal>
 </template>
 

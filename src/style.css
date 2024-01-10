@@ -30,3 +30,11 @@
   width: 1em;
   height: 1em;
 }
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
