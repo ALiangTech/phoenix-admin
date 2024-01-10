@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { defineAsyncComponent, ref } from 'vue';
+import { computed, defineAsyncComponent, ref } from 'vue';
 import type { ComponentMap, MenuItem, MenusType } from './types.ts';
-// import { useThemeVars } from 'naive-ui'
+import { useThemeVars } from 'naive-ui';
 // 组件初始化
 // 菜单切换 加载不同的配置 组件
 function useMenus() {
@@ -28,15 +28,28 @@ function useMenus() {
 const { menus, menuComponentMap, activeMenuValue } = useMenus();
 
 // 主题
-// function useTheme () {
-//   const themeVars = useThemeVars()
-// }
+function useTheme() {
+  const themeVars = useThemeVars();
+  const containerStyle = computed(() => {
+    const { primaryColor } = themeVars.value;
+    return {
+      backgroundColor: primaryColor,
+    };
+  });
+  return { containerStyle };
+}
+const { containerStyle } = useTheme();
+console.log(containerStyle);
 </script>
 
 <template>
-  <section class="flex h-full p-4">
+  <section class="flex h-full bg-white">
     <!--    菜单-->
-    <ZSlideTabs v-model="activeMenuValue" :list="menus"></ZSlideTabs>
+    <ZSlideTabs
+      v-model="activeMenuValue"
+      :list="menus"
+      class="w-40 bg-#ccc"
+    ></ZSlideTabs>
     <!--    具体内容配置组件-->
     <component :is="menuComponentMap[activeMenuValue]"></component>
   </section>
