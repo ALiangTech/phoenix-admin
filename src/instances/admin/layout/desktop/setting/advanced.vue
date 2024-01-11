@@ -35,7 +35,7 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
-import { switchAppearance } from '@/theme';
+import { switchAppearance, switchTheme } from '@/theme';
 defineOptions({
   name: 'SettingAdvanced',
 });
@@ -128,5 +128,6 @@ const theme = [
 const activeTheme = ref('red');
 function selectTheme(value: string) {
   activeTheme.value = value;
+  switchTheme(value);
 }
 </script>

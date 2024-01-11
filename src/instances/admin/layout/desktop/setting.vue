@@ -30,7 +30,7 @@ function openSettingDialog() {
   <n-modal v-model:show="showModal" :mask-closable="false">
     <section class="w-50vw h-50vh">
       <Setting></Setting>
-      <!--      <button @click="openSettingDialog">ss</button>-->
+      <button @click="openSettingDialog">ss</button>
     </section>
   </n-modal>
 </template>
