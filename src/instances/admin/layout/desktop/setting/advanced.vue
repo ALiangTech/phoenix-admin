@@ -35,6 +35,7 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
+import { switchAppearance } from '@/theme';
 defineOptions({
   name: 'SettingAdvanced',
 });
@@ -59,6 +60,7 @@ const appearances = [
 const activeAppearance = ref('system');
 function selectAppearance(value: string) {
   activeAppearance.value = value;
+  switchAppearance(value);
 }
 // 主题
 const theme = [
