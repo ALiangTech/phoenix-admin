@@ -51,6 +51,13 @@ console.log(containerStyle);
       class="w-40 bg-#ccc"
     ></ZSlideTabs>
     <!--    具体内容配置组件-->
-    <component :is="menuComponentMap[activeMenuValue]"></component>
+    <n-scrollbar>
+      <keep-alive>
+        <component
+          :is="menuComponentMap[activeMenuValue]"
+          class="flex-1"
+        ></component>
+      </keep-alive>
+    </n-scrollbar>
   </section>
 </template>
