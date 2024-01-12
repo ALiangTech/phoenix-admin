@@ -72,7 +72,9 @@ export function switchTheme(themeType: string) {
         const appearance = config.appearance;
         switch (appearance) {
           case 'system':
-            return unref(osThemeRef) === 'dark' ? darkTheme : lightTheme;
+            return unref(osThemeRef) === 'dark'
+              ? lightThemeOverrides
+              : darkThemeOverrides;
           case 'tint':
             return lightThemeOverrides;
           case 'deep':
