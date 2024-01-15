@@ -4,14 +4,14 @@ import { componentMap } from '@admin/layout';
 import { ref, unref } from 'vue';
 import Menu from '@admin/routers/components/menu/menu.vue';
 import { menu } from '@admin/routers';
-import { createThemeProvider } from '@/theme';
+import { createThemeConfigProvider } from '@/theme';
 
 defineOptions({
   name: 'APP',
 });
 const currentComponentMapKey = ref<componentsMapKey>('default-desktop');
 const component = componentMap.get(unref(currentComponentMapKey));
-const ThemeProvider = createThemeProvider();
+const ThemeProvider = createThemeConfigProvider();
 </script>
 <template>
   <ThemeProvider>

@@ -3,13 +3,13 @@ import { defineComponent, reactive, h, computed, unref } from 'vue';
 import type { Theme, Appearance } from './theme.type.ts';
 
 const config = reactive<Theme>({
-  appearance: 'system',
-  theme: lightTheme,
-  themeOverrides: null,
+  appearance: 'system', // 外观
+  theme: lightTheme, // 主题
+  themeOverrides: null, // 主题覆盖
 });
 
 // 基于naive-ui NConfigProvider 组件二次封装
-export function createThemeProvider() {
+export function createThemeConfigProvider() {
   return defineComponent((_, ctx) => {
     const { slots } = ctx;
     const osThemeRef = useOsTheme();
@@ -48,22 +48,20 @@ export function switchAppearance(appearance: Appearance): void {
 }
 
 // 批量导入颜色主题
-const themeModules = import.meta.glob('./config/*.ts');
-const typeThemeModules = Object.fromEntries(
-  Object.entries(themeModules).map(([key, value]) => {
+const themeModulePaths = import.meta.glob('./config/*.ts');
+const themeModules = Object.fromEntries(
+  Object.entries(themeModulePaths).map(([key, value]) => {
     const matchAll = key.match(/\/([^\/]+)\.ts$/);
-    if (Array.isArray(matchAll)) {
-      return [matchAll[1], value];
-    }
-    return [key, value];
+    return Array.isArray(matchAll) ? [matchAll[1], value] : [key, value];
   }),
 );
+
 /**
  * @desc 切换主题
  */
 export function switchTheme(themeType: string) {
   const osThemeRef = useOsTheme();
-  const fetch = typeThemeModules[themeType];
+  const fetch = themeModules[themeType];
   fetch &&
     fetch().then((overridesConfig: any) => {
       const { lightThemeOverrides, darkThemeOverrides } =
@@ -87,3 +85,8 @@ export function switchTheme(themeType: string) {
       console.log(config.themeOverrides);
     });
 }
+
+// 提供主题变量配置对象
+// 向外提供一个基于naive-ui 的二次封装的主题组件
+// 切换外观 函数
+// 切换主题 函数

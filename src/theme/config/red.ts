@@ -7,7 +7,7 @@ const lightThemeOverrides: GlobalThemeOverrides = {
 };
 const darkThemeOverrides: GlobalThemeOverrides = {
   common: {
-    primaryColor: '#f5222dFF',
+    primaryColor: '#d32029',
   },
 };
 
