@@ -1,6 +1,12 @@
 import { useOsTheme, darkTheme, lightTheme, NConfigProvider } from 'naive-ui';
 import { defineComponent, reactive, h, computed, unref } from 'vue';
 import type { Theme, Appearance } from './theme.type.ts';
+export type { Theme, Appearance } from './theme.type.ts';
+
+// 提供主题变量配置对象
+// 向外提供一个基于naive-ui 的二次封装的主题组件
+// 切换外观 函数
+// 切换主题 函数
 
 const config = reactive<Theme>({
   appearance: 'system', // 外观
@@ -85,8 +91,3 @@ export function switchTheme(themeType: string) {
       console.log(config.themeOverrides);
     });
 }
-
-// 提供主题变量配置对象
-// 向外提供一个基于naive-ui 的二次封装的主题组件
-// 切换外观 函数
-// 切换主题 函数

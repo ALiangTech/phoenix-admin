@@ -9,13 +9,13 @@ export type componentsMapKey =
 export const componentMap: Map<componentsMapKey, Component> = new Map();
 componentMap.set(
   'default-desktop',
-  defineAsyncComponent(() => import('./desktop.vue')),
+  defineAsyncComponent(() => import('./desktop/index.vue')),
 );
 componentMap.set(
   'default-phone',
-  defineAsyncComponent(() => import('./phone.vue')),
+  defineAsyncComponent(() => import('./phone/index.vue')),
 );
 componentMap.set(
   'default-tablet',
-  defineAsyncComponent(() => import('./tablet.vue')),
+  defineAsyncComponent(() => import('./tablet/index.vue')),
 );
