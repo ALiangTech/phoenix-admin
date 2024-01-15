@@ -50,6 +50,7 @@ console.log(containerStyle);
 
 <template>
   <section class="py-1 bg-#ccc overflow-hidden text-nowrap text-0 relative">
+    <!--姓名-->
     <n-avatar
       class="inline-block mx-4 relative z-1"
       :style="{
@@ -58,6 +59,7 @@ console.log(containerStyle);
       }"
       >{{ name }}</n-avatar
     >
+    <!--设置-->
     <div
       class="absolute top-50% translate-y--50% right-4 cursor-pointer"
       @click="openSettingDialog"
@@ -67,16 +69,17 @@ console.log(containerStyle);
       </svg>
     </div>
   </section>
+  <!--设置弹窗-->
   <n-modal v-model:show="showModal" :mask-closable="false">
     <section class="w-50vw h-50vh">
       <section class="flex h-full bg-white">
-        <!--    菜单-->
+        <!--菜单-->
         <ZSlideTabs
           v-model="activeMenuValue"
           :list="menus"
           class="w-40 bg-#ccc"
         ></ZSlideTabs>
-        <!--    具体内容配置组件-->
+        <!-- 具体内容配置组件-->
         <n-scrollbar>
           <keep-alive>
             <component
