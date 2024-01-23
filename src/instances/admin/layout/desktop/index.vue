@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import NavMenu from './desktop/menu.vue';
+import NavMenu from './menu/menu.vue';
 import { menu } from '@admin/routers';
-import Setting from './desktop/setting.vue';
+import Setting from './setting/AvatarWithSettings.vue';
 
 defineOptions({
-  name: 'DefaultDesktop',
+  name: 'DefaultDesktopLayout',
 });
 </script>
 
@@ -21,10 +21,13 @@ defineOptions({
         show-trigger="bar"
       >
         <section class="flex flex-col h-screen">
+          <!-- logo -->
           <div class="flex justify-center items-center pt-4">
-            <img src="@/assets/vue.svg" alt="logo" />
+            <img src="../../../../assets/vue.svg" alt="logo" />
           </div>
+          <!--菜单-->
           <NavMenu class="flex-1" :menu-list="menu"></NavMenu>
+          <!--头像/设置中心-->
           <Setting></Setting>
         </section>
       </n-layout-sider>
