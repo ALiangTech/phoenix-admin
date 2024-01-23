@@ -6,6 +6,7 @@ import { compression } from 'vite-plugin-compression2';
 import { createHtmlPlugin } from 'vite-plugin-html';
 import { visualizer } from 'rollup-plugin-visualizer';
 import path from 'path';
+import './src/vite-env';
 // 自动引入naive-ui 组件
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
@@ -42,6 +43,7 @@ export default defineConfig(({ command }) => {
         '@login': path.resolve(__dirname, './src/instances/login'),
       },
     },
+    envDir: './env',
     test: {},
   };
   if (command === 'serve') {
@@ -51,7 +53,7 @@ export default defineConfig(({ command }) => {
         createHtmlPlugin({
           inject: {
             data: {
-              title: 'ADMINS',
+              title: import.meta.env.VITE_APP_TITLE,
             },
           },
         }),
