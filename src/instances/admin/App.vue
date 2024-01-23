@@ -2,8 +2,6 @@
 import type { componentsMapKey } from '@admin/layout';
 import { componentMap } from '@admin/layout';
 import { ref, unref } from 'vue';
-import Menu from '@admin/routers/components/menu/menu.vue';
-import { menu } from '@admin/routers';
 import { createThemeConfigProvider } from '@/theme';
 
 defineOptions({
@@ -15,13 +13,6 @@ const ThemeProvider = createThemeConfigProvider();
 </script>
 <template>
   <ThemeProvider>
-    <component :is="component">
-      <template #content>
-        <router-view></router-view>
-      </template>
-      <template #menu>
-        <Menu :menu-list="menu"></Menu>
-      </template>
-    </component>
+    <component :is="component"></component>
   </ThemeProvider>
 </template>

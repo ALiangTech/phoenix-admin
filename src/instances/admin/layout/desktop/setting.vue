@@ -11,15 +11,15 @@ function openSettingDialog() {
 <template>
   <section class="py-1 bg-#ccc overflow-hidden text-nowrap text-0 relative">
     <n-avatar
-      class="inline-block mx-4 relative z-1"
+      class="inline-block relative ml-15px mx-auto z-1"
       :style="{
-        color: 'yellow',
-        backgroundColor: 'red',
+        color: 'skyblue',
+        backgroundColor: 'black',
       }"
       >{{ name }}</n-avatar
     >
     <div
-      class="absolute top-50% translate-y--50% right-4 cursor-pointer"
+      class="absolute top-50% translate-y--50% right-6 cursor-pointer"
       @click="openSettingDialog"
     >
       <svg class="w6 h6 ani-rotate">
@@ -37,7 +37,6 @@ function openSettingDialog() {
 
 <style scoped>
 /** 设置icon动画 */
-
 .ani-rotate {
   animation: rotate linear 8s infinite;
 }

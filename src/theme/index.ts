@@ -1,6 +1,6 @@
-import { useOsTheme, darkTheme, lightTheme, NConfigProvider } from 'naive-ui';
-import { defineComponent, reactive, h, computed, unref } from 'vue';
-import type { Theme, Appearance } from './theme.type.ts';
+import { darkTheme, lightTheme, NConfigProvider, useOsTheme } from 'naive-ui';
+import { computed, defineComponent, h, reactive, unref } from 'vue';
+import type { Appearance, Theme } from './theme.type.ts';
 
 const config = reactive<Theme>({
   appearance: 'system', // 外观

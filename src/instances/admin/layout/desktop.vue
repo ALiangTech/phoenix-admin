@@ -29,9 +29,7 @@ defineOptions({
         </section>
       </n-layout-sider>
       <n-layout-content content-style="height:100vh">
-        <section class="pl-16px h-100%">
-          <slot name="content"></slot>
-        </section>
+        <router-view></router-view>
       </n-layout-content>
     </n-layout>
   </main>
