@@ -60,9 +60,9 @@ function setRootRedirect(
 // 挂载到实例上面
 export const MountRouterToApp = async (app: App) => {
   const hasPermissionRoutes = filterPermissionRoutes({
-    codes: ['xx'],
     routes: asyncRoutes,
   });
+  console.log(hasPermissionRoutes, '+++');
   firstPermissionRoute.value = findFirstPermissionRoute({
     routes: hasPermissionRoutes,
   });

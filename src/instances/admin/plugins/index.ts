@@ -1,1 +1,0 @@
-export { registerPermission } from './permissions';
