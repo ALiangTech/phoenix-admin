@@ -6,7 +6,6 @@ import { compression } from 'vite-plugin-compression2';
 import { createHtmlPlugin } from 'vite-plugin-html';
 import { visualizer } from 'rollup-plugin-visualizer';
 import path from 'path';
-import './src/vite-env';
 // 自动引入naive-ui 组件
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
@@ -35,6 +34,14 @@ export default defineConfig(({ command }) => {
         resolvers: [NaiveUiResolver()],
       }),
       Unocss(),
+      createHtmlPlugin({
+        minify: true,
+        inject: {
+          data: {
+            title: 'ADMINS',
+          },
+        },
+      }), // index.html 插入数据
     ],
     resolve: {
       alias: {
@@ -49,15 +56,7 @@ export default defineConfig(({ command }) => {
   if (command === 'serve') {
     return mergeConfig(common, {
       // dev 独有配置
-      plugins: [
-        createHtmlPlugin({
-          inject: {
-            data: {
-              title: import.meta.env.VITE_APP_TITLE,
-            },
-          },
-        }),
-      ],
+      plugins: [],
     });
   } else {
     // command === 'build'
@@ -66,14 +65,6 @@ export default defineConfig(({ command }) => {
       // build 独有配置
       plugins: [
         compression({ include: [/\.(js)$/, /\.(css)$/, /\.(html)$/] }), // 构建产物压缩 gzip
-        createHtmlPlugin({
-          minify: true,
-          inject: {
-            data: {
-              title: 'ADMINS-PROD',
-            },
-          },
-        }), // index.html 插入数据
         visualizer({
           emitFile: true,
           filename: 'stats.html',
