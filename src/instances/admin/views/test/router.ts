@@ -6,7 +6,7 @@ export const login: RouteRecordRaw = {
   path: '/test',
   name: 'test',
   meta: {
-    code: 'xx',
+    code: 'c',
     menu: {
       label: '测试管理',
       icon: 'chart-graph',

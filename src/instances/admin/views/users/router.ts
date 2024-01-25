@@ -4,7 +4,7 @@ export const users: RouteRecordRaw = {
   path: '/users',
   name: 'users',
   meta: {
-    code: 'xx',
+    code: 'b',
     menu: {
       label: '用户管理',
       icon: 'chart-graph',

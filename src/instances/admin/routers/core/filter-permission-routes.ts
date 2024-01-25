@@ -1,36 +1,43 @@
 // 过滤掉无权限的路由
-import type { PermissionCode } from '@admin/plugins/permissions/types';
 import type { RouteRecordRaw } from 'vue-router';
 type Routes = RouteRecordRaw[];
-interface FilterPermissionParams {
-  codes: PermissionCode;
-  routes: Routes;
-}
+
 interface Filter {
   routes: Routes;
 }
-export default function filterPermissionRoutes(params: FilterPermissionParams) {
-  const { codes, routes } = params;
-  let hasPermissionRoutes: Routes = [];
-  function filter({ routes }: Filter) {
-    return routes.filter(route => {
+
+export default async function filterPermissionRoutes(
+  params: Filter,
+): Promise<Routes> {
+  const { routes } = params;
+
+  async function filter({ routes }: Filter): Promise<Routes> {
+    const filteredRoutes: Routes = [];
+
+    for (const route of routes) {
       const { meta, children = [] } = route;
+
       if (meta) {
         const { code } = meta;
+
         if (code) {
-          if (codes.includes(code)) {
-            route.children = filter({ routes: children });
-            return route;
-          } else {
-            return false;
+          const result = await window.$authorizer.can('read', code);
+
+          if (result) {
+            // 递归调用也是异步函数，使用 await 等待结果
+            route.children = await filter({ routes: children });
+            filteredRoutes.push(route);
           }
         } else {
-          return true;
+          filteredRoutes.push(route);
         }
+      } else {
+        filteredRoutes.push(route);
       }
-      return true;
-    });
+    }
+
+    return filteredRoutes;
   }
-  hasPermissionRoutes = filter({ routes });
-  return hasPermissionRoutes;
+
+  return filter({ routes });
 }

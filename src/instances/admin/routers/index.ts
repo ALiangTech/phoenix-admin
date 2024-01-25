@@ -59,7 +59,8 @@ function setRootRedirect(
 
 // 挂载到实例上面
 export const MountRouterToApp = async (app: App) => {
-  const hasPermissionRoutes = filterPermissionRoutes({
+  const hasPermissionRoutes = await filterPermissionRoutes({
+    codes: undefined,
     routes: asyncRoutes,
   });
   console.log(hasPermissionRoutes, '+++');
