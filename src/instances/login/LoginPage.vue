@@ -1,7 +1,7 @@
 <template>
   <main class="h-screen w-screen relative bg-black">
     <section
-      class="absoluteCenter w-70% h-md bg-light min-w-600px max-w-800px flex justify-between rounded-10px p-1.5"
+      class="absoluteCenter w-70% h-lg bg-light min-w-600px max-w-800px flex justify-between rounded-10px p-1.5"
     >
       <div class="flex-1">
         <LoginLogo></LoginLogo>

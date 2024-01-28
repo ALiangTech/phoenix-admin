@@ -4,7 +4,7 @@ import './style.css';
 import MountLoginInstance from './instances/login/login';
 import MountAdminInstance from '@admin/admin.ts';
 
-const type = true;
+const type = false;
 if (type) {
   MountAdminInstance();
 } else {

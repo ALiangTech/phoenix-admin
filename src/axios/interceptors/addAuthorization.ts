@@ -6,7 +6,7 @@ import type { AxiosInstance } from 'axios';
 export default function addAuthorization(axios: AxiosInstance) {
   axios.interceptors.request.use(config => {
     // 在发送请求之前做些什么
-    config.headers.Authorization = '123';
+    // config.headers.Authorization = '123';
     return config;
   });
 }
