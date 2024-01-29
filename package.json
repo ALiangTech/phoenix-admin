@@ -108,5 +108,8 @@
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
+  },
+  "volta": {
+    "node": "20.11.0"
   }
 }
