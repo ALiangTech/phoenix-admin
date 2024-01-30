@@ -81,10 +81,15 @@ function handleValidateClick(e: MouseEvent) {
   });
 }
 
-async function ApiLogin(data: API_DATA) {
+function ApiLogin(data: API_DATA) {
   loading.value = true;
-  const result = await http.post('/v2/logins', data);
-  loading.value = false;
-  console.log(result, '----');
+  http
+    .post('/v2/logins', data)
+    .then(data => {
+      console.log(data);
+    })
+    .finally(() => {
+      loading.value = false;
+    });
 }
 </script>
