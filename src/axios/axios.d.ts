@@ -1,9 +1,10 @@
-declare global {
-  namespace Axios {
-    interface Result {
-      msg: string;
-      data: any;
-      status: number;
-    }
+declare namespace Axios {
+  interface Error {
+    code: number;
+    message: string;
+  }
+  interface Result {
+    error: Error | null;
+    data: any;
   }
 }
