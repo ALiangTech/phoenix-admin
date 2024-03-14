@@ -22,6 +22,7 @@
     "axios": "^1.6.4",
     "casbin.js": "^0.5.1",
     "gsap": "^3.12.4",
+    "localforage": "^1.10.0",
     "lodash-es": "^4.17.21",
     "naive-ui": "^2.36.0",
     "seemly": "^0.3.8",

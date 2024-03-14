@@ -44,7 +44,9 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
 import type { FormInst } from 'naive-ui';
+import to from 'await-to-js';
 import http from '@/axios';
+import LocalForage from '@/localforage';
 interface API_DATA {
   name: string;
   pwd: string;
@@ -81,15 +83,25 @@ function handleValidateClick(e: MouseEvent) {
   });
 }
 
-function ApiLogin(data: API_DATA) {
+interface LoginResult {
+  data: {
+    token: string;
+  };
+}
+async function ApiLogin(data: API_DATA) {
   loading.value = true;
-  http
-    .post('/v2/logins', data)
-    .then(data => {
-      console.log(data);
-    })
-    .finally(() => {
-      loading.value = false;
+  const [, result] = await to<LoginResult, Axios.Error>(
+    http.post('/v2/login', data),
+  );
+  loading.value = false;
+  if (result) {
+    // 登录成功
+    const { token } = result.data;
+    await LocalForage.setItem('jwt', token);
+    LocalForage.setItem('instance-type', 'admin').then(() => {
+      // 存储成功
+      // window.location.reload();
     });
+  }
 }
 </script>
