@@ -8,10 +8,11 @@ interface Props {
   object: string;
 }
 const props = defineProps<Props>();
-const can = ref(false);
+const can = ref(true);
 watchEffect(() => {
   window.$authorizer.can(props.action, props.object).then(result => {
     can.value = result;
+    console.log(result, props);
   });
 });
 </script>

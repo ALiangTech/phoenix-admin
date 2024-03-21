@@ -96,11 +96,11 @@ async function ApiLogin(data: API_DATA) {
   loading.value = false;
   if (result) {
     // 登录成功
-    const { token } = result.data;
-    await LocalForage.setItem('jwt', token);
+    const { jwt } = result.data;
+    await LocalForage.setItem('jwt', jwt);
     LocalForage.setItem('instance-type', 'admin').then(() => {
       // 存储成功
-      // window.location.reload();
+      window.location.reload();
     });
   }
 }
