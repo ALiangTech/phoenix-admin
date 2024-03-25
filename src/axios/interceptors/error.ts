@@ -1,5 +1,14 @@
 // 统一接口返回接口
 import type { AxiosInstance } from 'axios';
+import * as localforage from 'localforage';
+
+// 错误字典
+const errorDic: Map<number, Function> = new Map();
+errorDic.set(401, async () => {
+  // 清除jwt
+  await localforage.clear();
+});
+
 export default function normalizeError(axios: AxiosInstance) {
   // 添加响应拦截器
   axios.interceptors.response.use(
@@ -12,14 +21,15 @@ export default function normalizeError(axios: AxiosInstance) {
       }
       return response;
     },
-    error => {
+    async error => {
       // 超出 2xx 范围的状态码都会触发该函数。
       // 对响应错误做点什么
       const {
         response: { status, statusText },
       } = error;
-      console.log(status, statusText);
-      return Promise.reject(error);
+      const fun = errorDic.get(status);
+      await (fun && fun());
+      return Promise.reject(statusText);
     },
   );
 }

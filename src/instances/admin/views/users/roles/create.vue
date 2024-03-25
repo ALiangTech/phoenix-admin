@@ -4,7 +4,12 @@
     <!-- 创建角色侧边弹窗 -->
     <n-drawer v-model:show="show" :width="540">
       <n-drawer-content title="创建角色" closable>
-        <ZNestChecked :data="permissions"></ZNestChecked>
+        <ZNestChecked v-model="codes" :data="permissions"></ZNestChecked>
+        <div>
+          <n-button type="primary" @click="handleCreateRole">
+            Primary
+          </n-button>
+        </div>
       </n-drawer-content>
     </n-drawer>
   </div>
@@ -16,6 +21,7 @@ defineOptions({
   name: 'CreateRoles',
 });
 const show = ref(false);
+const codes = ref<string[]>([]);
 
 interface PermissionItem {
   label: string;
@@ -30,60 +36,27 @@ const permissions: PermissionItem[] = [
     children: [
       {
         label: '账号管理',
-        value: 'accounts',
+        value: 'account',
         children: [
           {
             label: '创建账号',
-            value: 'createAccount',
+            value: 'account_add',
             children: [],
           },
         ],
       },
       {
         label: '角色管理',
-        value: 'roles',
+        value: 'role',
         children: [
           {
             label: '创建角色',
-            value: 'createRole',
+            value: 'role_add',
             children: [],
           },
           {
             label: '删除角色',
-            value: 'deleteAccount',
-            children: [],
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: '测试管理',
-    value: 'testuser',
-    children: [
-      {
-        label: '账号管理',
-        value: 'testaccounts',
-        children: [
-          {
-            label: '创建账号',
-            value: 'testcreateAccount',
-            children: [],
-          },
-        ],
-      },
-      {
-        label: '角色管理',
-        value: 'testroles',
-        children: [
-          {
-            label: '创建角色',
-            value: 'testcreateRoles',
-            children: [],
-          },
-          {
-            label: '删除角色',
-            value: 'testdeleteAccount',
+            value: 'role_del',
             children: [],
           },
         ],
@@ -91,4 +64,8 @@ const permissions: PermissionItem[] = [
     ],
   },
 ];
+
+function handleCreateRole() {
+  console.log(codes);
+}
 </script>

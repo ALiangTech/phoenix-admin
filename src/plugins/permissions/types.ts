@@ -1,8 +1,8 @@
 import type { App } from 'vue';
 
-export type PermissionCode = string[];
+export type PermissionSet = Set<string>;
 export interface Options {
-  permission: Permission;
+  permissionSet: PermissionSet;
   [key: string]: any;
 }
 export type PluginInstallFunction = (app: App, ...options: Options[]) => any;

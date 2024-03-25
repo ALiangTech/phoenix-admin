@@ -2,16 +2,13 @@
   <slot v-if="can"></slot>
 </template>
 <script lang="ts" setup>
-import { ref, watchEffect } from 'vue';
+import { computed } from 'vue';
 interface Props {
-  action: string;
-  object: string;
+  permissionCodeSet: Set<string>;
+  code: string;
 }
 const props = defineProps<Props>();
-const can = ref(false);
-watchEffect(() => {
-  window.$authorizer.can(props.action, props.object).then(result => {
-    can.value = result;
-  });
+const can = computed(() => {
+  return window.$can(props.code);
 });
 </script>
