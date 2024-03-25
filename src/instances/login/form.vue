@@ -85,7 +85,7 @@ function handleValidateClick(e: MouseEvent) {
 
 interface LoginResult {
   data: {
-    token: string;
+    jwt: string;
   };
 }
 async function ApiLogin(data: API_DATA) {

@@ -17,7 +17,7 @@ interface DataItem {
 // 如果勾选了子级 那么父级 也会被勾选 改组件只满足
 // 如果父级 取消了勾选 并且子级有勾选的 那么 子级应该取消勾选
 
-function setChildrenPareneValues(
+function setChildrenParentValues(
   data: DataItem[],
   parentDataItem: DataItem | null,
 ) {
@@ -29,7 +29,7 @@ function setChildrenPareneValues(
       item.parentValues.push(parentDataItem.value!);
       item.parentValues = item.parentValues.concat(parentDataItem.parentValues);
     }
-    item.children = setChildrenPareneValues(item.children, item);
+    item.children = setChildrenParentValues(item.children, item);
     return item;
   });
 }
@@ -58,13 +58,14 @@ export default {
       default: () => [],
     },
   },
-  setup(props) {
+  emits: ['update:modelValue'],
+  setup(props, { emit }) {
     const data = props.data as DataItem[];
-    setChildrenPareneValues(data, null);
+    setChildrenParentValues(data, null);
     setChildChildrenValues(data);
     const checked = ref<Checked>({});
     function createCheckedVnode(data: DataItem[]): any[] {
-      const vnodes = data.map((item, index) => {
+      return data.map((item, index) => {
         return h(
           'div',
           {
@@ -96,6 +97,7 @@ export default {
                       ...temp,
                       [item.value]: v,
                     };
+                    emit('update:modelValue', checked.value);
                   },
                 },
                 {
@@ -107,7 +109,6 @@ export default {
           ],
         );
       });
-      return vnodes;
     }
     return () => {
       return h(

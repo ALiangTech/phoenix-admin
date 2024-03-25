@@ -21,7 +21,7 @@ export default async function filterPermissionRoutes(
         const { code } = meta;
 
         if (code) {
-          const result = await window.$authorizer.can('post', 'account_add');
+          const result = window.$can(code);
 
           if (result) {
             // 递归调用也是异步函数，使用 await 等待结果

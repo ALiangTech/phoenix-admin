@@ -1,24 +1,33 @@
 import type { App, Plugin } from 'vue';
 import HasPermission from './HasPermission.vue';
-import type { PluginInstallFunction, Options } from './types';
-import createCasbinInstance from './casbin';
+import type { PluginInstallFunction, Options, PermissionSet } from './types';
+
 const install: PluginInstallFunction = (app, ...options) => {
-  const { authorizer } = options[0];
-  app.config.globalProperties.$authorizer = authorizer;
+  const { permissionSet } = options[0];
+  window.$can = checkPermissions.bind(null, permissionSet);
   app.component('HasPermissionControl', HasPermission);
 };
 const permission: Plugin = {
   install,
 };
 // 注册权限组件
-export const registerPermission = async (app: App, options: Options) => {
-  const { role } = options;
-  const authorizer = await createCasbinInstance(role);
-  window.$authorizer = authorizer; // 挂载到全局
-  console.log(authorizer);
-  console.log('Test2');
-  const res = await window.$authorizer.can('post', 'account_add');
-  console.log(res);
-  console.log('Test');
-  app.use(permission, { authorizer });
+export const registerPermission = (app: App, options: Options) => {
+  app.use(permission, options);
 };
+
+// 判断是否有这个权限code
+export function checkPermissions(
+  codes: PermissionSet,
+  code: string | string[],
+) {
+  function checkSinglePermission(code: string) {
+    return codes.has(code);
+  }
+
+  if (Array.isArray(code)) {
+    // 确保每一个code都存在于codes中
+    return code.every(checkSinglePermission);
+  } else {
+    return checkSinglePermission(code);
+  }
+}
