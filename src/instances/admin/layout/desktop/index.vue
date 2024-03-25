@@ -2,7 +2,6 @@
 import NavMenu from './menu/menu.vue';
 import { menu } from '@admin/routers';
 import Setting from './setting/AvatarWithSettings.vue';
-import HasPermission from '@/plugins/permissions/HasPermission.vue';
 
 defineOptions({
   name: 'DefaultDesktopLayout',
@@ -11,10 +10,6 @@ defineOptions({
 
 <template>
   <main class="h-screen">
-    <div>xxx</div>
-    <has-permission action="post" object="/account_add">
-      <div>kkk</div>
-    </has-permission>
     <n-layout has-sider>
       <n-layout-sider
         :collapsed-width="64"

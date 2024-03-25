@@ -54,8 +54,10 @@ export default {
       required: true,
     },
     modelValue: {
-      type: Array,
-      default: () => [],
+      type: Object,
+      default: () => {
+        return {};
+      },
     },
   },
   emits: ['update:modelValue'],
@@ -78,7 +80,7 @@ export default {
               h(
                 NCheckbox,
                 {
-                  checked: checked.value[item.value],
+                  checked: !!checked.value[item.value],
                   onUpdateChecked: v => {
                     const temp: any = {};
                     if (v) {
