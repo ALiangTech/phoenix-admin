@@ -27,8 +27,8 @@ up.stdout.on('data', (data) => {
   function* packageGenerator() {
     const length = packages.length;
     for (let i = 0; i < length; i++) {
-      const { packageName, wantedVersion } = packages[i];
-      const command = `${packageName}@${wantedVersion}`;
+      const { packageName, latestVersion } = packages[i];
+      const command = `${packageName}@${latestVersion}`;
       yield executeUpdate(packageName, command)
     }
   }
