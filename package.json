@@ -12,7 +12,8 @@
     "stylelint": "stylelint src/**/*.{css,vue}",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "upp": "npx esno ./script/update-package.ts"
   },
   "dependencies": {
     "@unocss/reset": "^0.58.6",
@@ -32,6 +33,7 @@
   "devDependencies": {
     "@babel/core": "^7.24.3",
     "@babel/eslint-parser": "^7.24.1",
+    "@types/node": "^20.11.30",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "@unocss/transformer-attributify-jsx": "^0.58.6",
