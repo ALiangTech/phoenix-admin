@@ -1,7 +1,7 @@
 <template>
   <section
     v-element-size="onResize"
-    class="relative p-2 flex flex-col gap-2 items-center justify-center h-100%"
+    class="relative p-2 flex gap-2 items-center justify-center h-100%"
   >
     <div ref="gbg" class="absolute bg-red top-0 h-1.5em rounded-6px"></div>
     <div

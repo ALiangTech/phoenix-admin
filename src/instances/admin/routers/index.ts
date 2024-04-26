@@ -4,6 +4,7 @@ import type {
   RouteRecordName,
 } from 'vue-router';
 import { createRouter, createWebHistory } from 'vue-router';
+import { useRouterView } from '@admin/hooks';
 import type { App } from 'vue';
 import { ref } from 'vue';
 import {
@@ -39,8 +40,7 @@ const noPermissionRoute: RouteRecordRaw = {
 };
 const rootRoute: RouteRecordRaw = {
   path: '/',
-  name: 'RootPage',
-  component: () => import('./components/root/root.vue'),
+  component: useRouterView(),
   children: [],
 };
 
@@ -62,7 +62,6 @@ export const MountRouterToApp = async (app: App) => {
   const hasPermissionRoutes = await filterPermissionRoutes({
     routes: asyncRoutes,
   });
-  console.log(hasPermissionRoutes, '+++');
   firstPermissionRoute.value = findFirstPermissionRoute({
     routes: hasPermissionRoutes,
   });
@@ -70,7 +69,7 @@ export const MountRouterToApp = async (app: App) => {
   setRootRedirect(rootRoute, firstPermissionRoute.value?.name);
   rootRoute.children = hasPermissionRoutes;
   const options: RouterOptions = {
-    history: createWebHistory(),
+    history: createWebHistory('admin'),
     routes: [rootRoute, noPermissionRoute],
     strict: true,
     sensitive: true,

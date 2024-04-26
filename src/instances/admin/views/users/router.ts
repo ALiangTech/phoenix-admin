@@ -1,5 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router';
-
+import { useRouterView } from '@admin/hooks';
 export const users: RouteRecordRaw = {
   path: '/users',
   name: 'users',
@@ -9,7 +9,7 @@ export const users: RouteRecordRaw = {
       icon: 'chart-graph',
     },
   },
-  component: () => import('./index.vue'),
+  component: useRouterView(),
   children: [
     {
       path: 'accounts',

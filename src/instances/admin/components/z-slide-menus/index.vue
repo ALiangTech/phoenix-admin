@@ -1,5 +1,5 @@
 <template>
-  <section class="h-100% flex w-100%">
+  <section class="h-100% grid w-100%">
     <div class="w-160px mx-auto">
       <ZSliceTabs
         v-model="currentRouteName"

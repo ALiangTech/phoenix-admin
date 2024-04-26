@@ -2,7 +2,7 @@
   <div>
     <n-button @click="show = true"> 创建角色 </n-button>
     <!-- 创建角色侧边弹窗 -->
-    <n-drawer v-model:show="show" width="50%" max-width="50%">
+    <n-drawer v-model:show="show" width="50%">
       <n-drawer-content title="创建角色" closable>
         <n-input maxlength="20" show-count placeholder="请输入用户角色名称" />
         <div class="py-10px">

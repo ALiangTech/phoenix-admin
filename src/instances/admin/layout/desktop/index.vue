@@ -1,10 +1,17 @@
-<script setup lang="ts">
+<script lang="ts">
 import NavMenu from './menu/menu.vue';
 import { menu } from '@admin/routers';
 import Setting from './setting/AvatarWithSettings.vue';
-
-defineOptions({
-  name: 'DefaultDesktopLayout',
+import { defineComponent } from 'vue';
+import Top from './top/index.vue';
+export default defineComponent({
+  name: 'DesktopLayoutEntry',
+  components: { NavMenu, Setting, Top },
+  setup() {
+    return {
+      menu,
+    };
+  },
 });
 </script>
 
@@ -32,8 +39,18 @@ defineOptions({
         </section>
       </n-layout-sider>
       <n-layout-content content-style="height:100vh">
-        <router-view></router-view>
+        <div class="m-l-24px h-full grid custom-rows">
+          <Top></Top>
+          <div class="overflow-hidden">
+            <router-view></router-view>
+          </div>
+        </div>
       </n-layout-content>
     </n-layout>
   </main>
 </template>
+<style scoped>
+.custom-rows {
+  grid-template-rows: 48px 1fr;
+}
+</style>
