@@ -3,10 +3,9 @@ import NavMenu from './menu/menu.vue';
 import { menu } from '@admin/routers';
 import Setting from './setting/AvatarWithSettings.vue';
 import { defineComponent } from 'vue';
-import Top from './top/index.vue';
 export default defineComponent({
   name: 'DesktopLayoutEntry',
-  components: { NavMenu, Setting, Top },
+  components: { NavMenu, Setting },
   setup() {
     return {
       menu,
@@ -39,18 +38,10 @@ export default defineComponent({
         </section>
       </n-layout-sider>
       <n-layout-content content-style="height:100vh">
-        <div class="m-l-24px h-full grid custom-rows">
-          <Top></Top>
-          <div class="overflow-hidden">
-            <router-view></router-view>
-          </div>
+        <div class="m-l-24px">
+          <router-view></router-view>
         </div>
       </n-layout-content>
     </n-layout>
   </main>
 </template>
-<style scoped>
-.custom-rows {
-  grid-template-rows: 48px 1fr;
-}
-</style>

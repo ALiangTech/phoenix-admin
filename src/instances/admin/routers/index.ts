@@ -1,10 +1,5 @@
-import type {
-  RouterOptions,
-  RouteRecordRaw,
-  RouteRecordName,
-} from 'vue-router';
+import type { RouterOptions, RouteRecordRaw } from 'vue-router';
 import { createRouter, createWebHistory } from 'vue-router';
-import { useRouterView } from '@admin/hooks';
 import type { App } from 'vue';
 import { ref } from 'vue';
 import {
@@ -39,20 +34,19 @@ const noPermissionRoute: RouteRecordRaw = {
   component: () => import('./exceptional/no-permission.vue'),
 };
 const rootRoute: RouteRecordRaw = {
-  path: '/',
-  component: useRouterView(),
   children: [],
+  component: undefined,
+  path: '/',
 };
 
 // 给root设置 重定向到 有权限的第一个路由
-
 function setRootRedirect(
   root: RouteRecordRaw,
-  redirect: RouteRecordName | undefined,
+  redirect: RouteRecordRaw | undefined,
 ) {
   if (redirect) {
     root.redirect = () => {
-      return { name: redirect };
+      return { path: redirect.path };
     };
   }
 }
@@ -62,15 +56,14 @@ export const MountRouterToApp = async (app: App) => {
   const hasPermissionRoutes = await filterPermissionRoutes({
     routes: asyncRoutes,
   });
+  menu.value = createMenuData({ routes: hasPermissionRoutes }); // todo 这个地方会隐式的修改hasPermissionRoutes
   firstPermissionRoute.value = findFirstPermissionRoute({
     routes: hasPermissionRoutes,
   });
-  menu.value = createMenuData({ routes: hasPermissionRoutes });
-  setRootRedirect(rootRoute, firstPermissionRoute.value?.name);
-  rootRoute.children = hasPermissionRoutes;
+  setRootRedirect(rootRoute, firstPermissionRoute.value);
   const options: RouterOptions = {
-    history: createWebHistory('admin'),
-    routes: [rootRoute, noPermissionRoute],
+    history: createWebHistory(),
+    routes: [rootRoute, ...hasPermissionRoutes, noPermissionRoute],
     strict: true,
     sensitive: true,
   };

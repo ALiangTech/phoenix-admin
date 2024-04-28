@@ -13,21 +13,25 @@
 
 <script lang="ts" setup>
 import type { MenuComponent } from './menu';
+import type { MenuOption } from 'naive-ui';
 import { RouterLink } from 'vue-router';
 import { computed, h, ref } from 'vue';
 const props = defineProps<MenuComponent.Props>();
 defineOptions({
   name: 'DesktopMenu',
 });
-const activeKey = ref();
+const activeKey = ref(window.location.pathname);
 
 function renderIcon(name: string) {
   return () => h('iconpark-icon', { name });
 }
-
-function createMenuOptions(menu: any[]) {
+// 构建菜单的options 如果没有children 说明到了最后一级需要执行导航
+// label 就要替换成link 函数
+// todo 先改成any 提交一波代码
+function createMenuOptions(menu: any[]): MenuOption[] {
   return menu.map(item => {
-    return {
+    const children = item.children;
+    const temp: MenuOption = {
       label: () =>
         h(
           RouterLink,
@@ -41,10 +45,16 @@ function createMenuOptions(menu: any[]) {
       key: item.path,
       icon: renderIcon(item.icon),
     };
+    if (children.length > 1) {
+      temp.label = item.label;
+      temp.children = createMenuOptions(item.children);
+    }
+    return temp;
   });
 }
 
 const options = computed(() => {
   return createMenuOptions(props.menuList);
 });
+console.log(options, '-options-');
 </script>
