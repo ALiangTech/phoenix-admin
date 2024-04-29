@@ -1,8 +1,8 @@
 import * as localforage from 'localforage';
 
 const LocalForage = {
-  getItem(key: Localforage.SetItemKey) {
-    return localforage.getItem(key);
+  getItem<T>(key: Localforage.SetItemKey) {
+    return localforage.getItem<T>(key);
   },
   setItem(key: Localforage.SetItemKey, value: any) {
     return localforage.setItem(key, value);

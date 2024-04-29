@@ -16,7 +16,9 @@ const instanceMap: Map<InstanceType, Function> = new Map([
 ]);
 
 async function init() {
-  const [, type] = await to(LocalForage.getItem('instance-type'));
+  const [, type] = await to<InstanceType | undefined>(
+    LocalForage.getItem('instance-type'),
+  );
   // 根据实例类型获取对应的实例函数
   const instanceFunction = type
     ? instanceMap.get(type as InstanceType)

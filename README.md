@@ -4,6 +4,9 @@
 
 项目采用多实例模式 整体分离成俩部分： 登录部分 + 业务部分 主要是方便权限计算
 
+## 渲染流程
+
+[![admin2024-04-28-1654.png](https://i.postimg.cc/XqVCc7Gb/admin2024-04-28-1654.png)](https://i.postimg.cc/XqVCc7Gb/admin2024-04-28-1654.png)
 
 ## 技术栈
 
@@ -19,9 +22,14 @@ css 使用[原子css](https://antfu.me/posts/reimagine-atomic-css-zh)方式: [un
 
 ## 规范
 
-- 语法规范默认采用的是腾讯发布的一版规范 [alloy/vue](https://github.com/AlloyTeam/eslint-config-alloy/blob/master/README.zh-CN.md)
+-
+
+语法规范默认采用的是腾讯发布的一版规范 [alloy/vue](https://github.com/AlloyTeam/eslint-config-alloy/blob/master/README.zh-CN.md)
+
 - 风格规范默认采用Prettier的官方默认风格
-- 标签规范采用的是stylelint的[stylelint-config-recommended-vue](https://github.com/ota-meshi/stylelint-config-recommended-vue)
+-
+
+标签规范采用的是stylelint的[stylelint-config-recommended-vue](https://github.com/ota-meshi/stylelint-config-recommended-vue)
 
 ## 项目依赖更新
 
@@ -45,28 +53,30 @@ Z 为修订号(patch)：修正了向下兼容的问题
 
 ```typescript
   interface response {
-    data: object | null,
-    error: error[],
-    code: number
-  }
+  data: object | null,
+  error: error[],
+  code: number
+}
 ```
-
 
 ### 多实例渲染模式
 
 登录界面作为一个单独实例进行渲染 类型 login
 具体业务作为一个业务实例进行渲染 类型 admin
 
-
-
 ### 权限设计
 
 #### 路由权限
+
 拿到全部的路由信息 然后 过滤掉无权限的路由信息 获取到当前用户有权限的路由信息 然后注册这些有权限的路由信息
+
 #### 元素权限
+
 主要是控制页面元素是否展示
 通过全局的hasPermission 组件控制
+
 #### 逻辑权限
+
 js里面的 通过全局保留权限实例来做？？？(暂定)
 
 
