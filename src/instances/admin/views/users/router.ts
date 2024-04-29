@@ -1,5 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router';
 import { useRouterView } from '@admin/hooks';
+
 export const users: RouteRecordRaw = {
   path: '/users',
   meta: {
@@ -15,6 +16,7 @@ export const users: RouteRecordRaw = {
       meta: {
         menu: {
           label: '账号管理',
+          icon: 'people',
         },
       },
       component: () => import('./accounts/accounts.vue'),
@@ -24,6 +26,7 @@ export const users: RouteRecordRaw = {
       meta: {
         menu: {
           label: '角色管理',
+          icon: 'permissions',
         },
       },
       component: () => import('./roles/roles.vue'),
