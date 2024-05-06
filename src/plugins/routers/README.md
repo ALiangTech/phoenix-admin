@@ -11,9 +11,11 @@
 当一个路由下面有多个子级路路由,例如有下面路由
 
 ```js
- const routes = [{
-  path: '/user',
-  redirect: '/user/account',
-  children: [{ path: 'account' }, { path: 'user' }]
-}]
+const routes = [
+  {
+    path: '/user',
+    redirect: '/user/account',
+    children: [{ path: 'account' }, { path: 'user' }],
+  },
+];
 ```

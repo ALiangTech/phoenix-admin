@@ -1,5 +1,5 @@
 // 该脚本主要是用来做主要版本升级 也就是说 不兼容升级x的版本
-import { spawn } from 'node:child_process'
+import { spawn } from 'node:child_process';
 
 interface PackageItem {
   packageName: string;
@@ -10,26 +10,28 @@ interface PackageItem {
 
 // 运行pnpm outdated 命令获取需要升级的包和升级的版本
 // todo pnpm oudated --json 可以直接获取json版本 后续在更新一下逻辑
-const up = spawn('pnpm', ['outdated', '--json'])
+const up = spawn('pnpm', ['outdated', '--json']);
 
-up.stdout.on('data', (data) => {
+up.stdout.on('data', data => {
   // 用于存储包信息的数组
   const packages: PackageItem[] = [];
   const version = JSON.parse(data);
-  Object.entries(version).forEach(([packageName,{ wanted,current,latest }]) => {
-    packages.push({
-      packageName,
-      currentVersion:current,
-      latestVersion:latest,
-      wantedVersion:wanted,
-    })
-  })
+  Object.entries(version).forEach(
+    ([packageName, { wanted, current, latest }]) => {
+      packages.push({
+        packageName,
+        currentVersion: current,
+        latestVersion: latest,
+        wantedVersion: wanted,
+      });
+    },
+  );
   function* packageGenerator() {
     const length = packages.length;
     for (let i = 0; i < length; i++) {
       const { packageName, latestVersion } = packages[i];
       const command = `${packageName}@${latestVersion}`;
-      yield executeUpdate(packageName, command)
+      yield executeUpdate(packageName, command);
     }
   }
   const generator = packageGenerator();
@@ -37,10 +39,10 @@ up.stdout.on('data', (data) => {
   async function execute() {
     try {
       for await (const g of generator) {
-        console.log(g)
+        console.log(g);
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   }
   execute().then(r => r);
@@ -48,14 +50,14 @@ up.stdout.on('data', (data) => {
 
 function executeUpdate(packageName: string, command: string) {
   return new Promise((resolve, rejects) => {
-    const upp = spawn('pnpm', ['up', command], { shell: true })
-    console.log(`npm包${packageName}`, '安装中...')
-    upp.on('close', (code) => {
-      const msg = code ? '失败' : '成功'
-      resolve(`npm包${packageName}${msg} \n`)
+    const upp = spawn('pnpm', ['up', command], { shell: true });
+    console.log(`npm包${packageName}`, '安装中...');
+    upp.on('close', code => {
+      const msg = code ? '失败' : '成功';
+      resolve(`npm包${packageName}${msg} \n`);
     });
-    upp.stderr.on('data', (data) => {
-      rejects(new Error(`stderr: ${packageName} 安装失败 ${data}`))
+    upp.stderr.on('data', data => {
+      rejects(new Error(`stderr: ${packageName} 安装失败 ${data}`));
     });
-  })
+  });
 }

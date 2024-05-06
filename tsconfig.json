@@ -26,6 +26,12 @@
       "@login/*": ["src/instances/login/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue","cypress.d.ts", "src/**/*.d.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "cypress.d.ts",
+    "src/**/*.d.ts"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

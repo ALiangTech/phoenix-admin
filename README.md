@@ -52,10 +52,10 @@ Z 为修订号(patch)：修正了向下兼容的问题
 ## 接口响应规范
 
 ```typescript
-  interface response {
-  data: object | null,
-  error: error[],
-  code: number
+interface response {
+  data: object | null;
+  error: error[];
+  code: number;
 }
 ```
 
@@ -78,10 +78,3 @@ Z 为修订号(patch)：修正了向下兼容的问题
 #### 逻辑权限
 
 js里面的 通过全局保留权限实例来做？？？(暂定)
-
-
-
-
-
-
-
