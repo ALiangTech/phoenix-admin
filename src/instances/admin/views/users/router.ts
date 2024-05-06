@@ -1,7 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router';
 import { useRouterView } from '@admin/hooks';
 
-export const users: RouteRecordRaw = {
+const users: RouteRecordRaw = {
   path: '/users',
   meta: {
     menu: {
@@ -33,3 +33,5 @@ export const users: RouteRecordRaw = {
     },
   ],
 };
+
+export default users;

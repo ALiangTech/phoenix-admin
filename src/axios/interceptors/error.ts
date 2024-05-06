@@ -1,4 +1,3 @@
-// 统一接口返回接口
 import type { AxiosInstance } from 'axios';
 import * as localforage from 'localforage';
 

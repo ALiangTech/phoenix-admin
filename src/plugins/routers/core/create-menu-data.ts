@@ -1,24 +1,28 @@
 // 构建菜单数据
 import type { RouteRecordRaw } from 'vue-router';
-import { createFullPathMenuData } from '@admin/routers/utils';
+import { createFullPathMenuData } from './../utils';
 
 interface CreateMenuDataParams {
   routes: RouteRecordRaw[];
 }
+
 type Map = CreateMenuDataParams;
+
 export interface Menu {
   path: string;
   label: string;
-  icon?: string | null;
+  icon: string;
   children: Menu[];
 }
+
 export default function createMenuData({ routes }: CreateMenuDataParams) {
   let menu: Menu[];
+
   function mapRoutes({ routes }: Map) {
     return routes
       .map(route => {
         const { meta, children = [], path } = route;
-        const temp: Menu = { children: [], label: '', path };
+        const temp: Menu = { children: [], label: '', path, icon: '' };
         if (meta?.menu) {
           const { label, icon } = meta.menu;
           temp.label = label;
@@ -29,6 +33,7 @@ export default function createMenuData({ routes }: CreateMenuDataParams) {
       })
       .filter(({ label }) => label); // filter no menu data
   }
+
   menu = mapRoutes({ routes: createFullPathMenuData(routes, null) });
   return menu;
 }

@@ -2,7 +2,7 @@ import type { RouteRecordRaw } from 'vue-router';
 import Test from '@admin/views/test/index.vue';
 import Test2 from '@admin/views/test/test2.vue';
 
-export const login: RouteRecordRaw = {
+const login: RouteRecordRaw = {
   path: '/test',
   name: 'test',
   meta: {
@@ -27,3 +27,5 @@ export const login: RouteRecordRaw = {
     },
   ],
 };
+
+export default login;

@@ -1,5 +1,4 @@
 <template>
-  <!--    <img :src="LogoSrc" alt="logo图片" class="w-100% h-48px object-contain" />-->
   <nav class="pt-16px">
     <n-menu
       v-model:value="activeKey"
@@ -12,17 +11,12 @@
   </nav>
 </template>
 
-<script lang="ts" setup>
-import type { MenuComponent } from './menu';
+<script lang="ts">
 import type { MenuOption } from 'naive-ui';
 import { RouterLink } from 'vue-router';
-import { computed, h, ref } from 'vue';
-
-const props = defineProps<MenuComponent.Props>();
-defineOptions({
-  name: 'DesktopMenu',
-});
-const activeKey = ref(window.location.pathname);
+import { h, ref, defineComponent } from 'vue';
+import { useMenuData } from '@/hooks';
+import type { Menu } from '@/plugins';
 
 function renderIcon(name: string) {
   // <svg class="iconpark-icon"><use href="#chart-graph"></use></svg>
@@ -30,10 +24,9 @@ function renderIcon(name: string) {
     h('svg', { class: 'iconpark-icon' }, [h('use', { href: `#${name}` })]);
 }
 
-// 构建菜单的options 如果没有children 说明到了最后一级需要执行导航
-// label 就要替换成link 函数
-// todo 先改成any 提交一波代码
-function createMenuOptions(menu: any[]): MenuOption[] {
+// 构建菜单的options 如果没有children 说明到了最后一级需要执行导航 就是点击需要页面跳转
+// 所以label 就要替换成link 函数
+function createMenuOptions(menu: Menu[]): MenuOption[] {
   return menu.map(item => {
     const children = item.children;
     const temp: MenuOption = {
@@ -58,8 +51,16 @@ function createMenuOptions(menu: any[]): MenuOption[] {
   });
 }
 
-const options = computed(() => {
-  return createMenuOptions(props.menuList);
+export default defineComponent({
+  name: 'DesktopMenu',
+  setup() {
+    const data = useMenuData();
+    const activeKey = ref(window.location.pathname);
+    const options = createMenuOptions(data);
+    return {
+      activeKey,
+      options,
+    };
+  },
 });
-console.log(options, '-options-');
 </script>

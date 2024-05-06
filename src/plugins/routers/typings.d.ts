@@ -1,7 +1,8 @@
 import 'vue-router';
+
 interface Menu {
   label: string;
-  icon?: string | null;
+  icon: string;
 }
 
 declare module 'vue-router' {

@@ -1,15 +1,13 @@
 <script lang="ts">
 import NavMenu from './menu/menu.vue';
-import { menu } from '@admin/routers';
 import Setting from './setting/AvatarWithSettings.vue';
 import { defineComponent } from 'vue';
+
 export default defineComponent({
   name: 'DesktopLayoutEntry',
   components: { NavMenu, Setting },
   setup() {
-    return {
-      menu,
-    };
+    return {};
   },
 });
 </script>
@@ -32,7 +30,7 @@ export default defineComponent({
             <img src="../../../../assets/vue.svg" alt="logo" />
           </div>
           <!--菜单-->
-          <NavMenu class="flex-1" :menu-list="menu"></NavMenu>
+          <NavMenu class="flex-1"></NavMenu>
           <!--头像/设置中心-->
           <Setting></Setting>
         </section>
