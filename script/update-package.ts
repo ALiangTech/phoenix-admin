@@ -16,16 +16,16 @@ up.stdout.on('data', data => {
   // 用于存储包信息的数组
   const packages: PackageItem[] = [];
   const version = JSON.parse(data);
-  Object.entries(version).forEach(
-    ([packageName, { wanted, current, latest }]) => {
-      packages.push({
-        packageName,
-        currentVersion: current,
-        latestVersion: latest,
-        wantedVersion: wanted,
-      });
-    },
-  );
+  Object.entries(version).forEach(([packageName, packageInfo]) => {
+    const { wanted, current, latest } = packageInfo as any;
+    packages.push({
+      packageName,
+      currentVersion: current,
+      latestVersion: latest,
+      wantedVersion: wanted,
+    });
+  });
+
   function* packageGenerator() {
     const length = packages.length;
     for (let i = 0; i < length; i++) {
@@ -34,6 +34,7 @@ up.stdout.on('data', data => {
       yield executeUpdate(packageName, command);
     }
   }
+
   const generator = packageGenerator();
 
   async function execute() {
@@ -45,6 +46,7 @@ up.stdout.on('data', data => {
       console.error(error);
     }
   }
+
   execute().then(r => r);
 });
 
