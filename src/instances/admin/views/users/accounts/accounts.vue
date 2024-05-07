@@ -1,7 +1,5 @@
 <template>
-  <section>
-    accounts
-    <button>switch</button>
+  <section class="h-full">
     <ZDataTable :fetch="loadData"></ZDataTable>
   </section>
 </template>

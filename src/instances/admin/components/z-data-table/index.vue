@@ -1,9 +1,21 @@
 <template>
-  <n-data-table :columns="columns" :data="data" :pagination="pagination" />
+  <UseElementBounding v-slot="{ height }" class="h-full overflow-hidden">
+    <div>
+      <n-data-table
+        :columns="columns"
+        :data="data"
+        :pagination="pagination"
+        :style="{ height: `${height}px` }"
+        flex-height
+      />
+    </div>
+  </UseElementBounding>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
+import { UseElementBounding } from '@vueuse/components';
+
 const columns = [
   {
     title: 'Name',
@@ -28,6 +40,7 @@ const data = Array.from({ length: 46 }).map((_, index) => ({
 
 export default defineComponent({
   name: 'ZDataTable',
+  components: { UseElementBounding },
   props: {
     fetch: {
       type: Function, // 获取表格数据接口

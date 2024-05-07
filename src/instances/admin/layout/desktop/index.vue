@@ -36,7 +36,7 @@ export default defineComponent({
         </section>
       </n-layout-sider>
       <n-layout-content content-style="height:100vh">
-        <div class="m-l-24px">
+        <div class="m-l-24px h-full overflow-auto">
           <router-view></router-view>
         </div>
       </n-layout-content>
