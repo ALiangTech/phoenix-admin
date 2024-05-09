@@ -47,10 +47,12 @@ import type { FormInst } from 'naive-ui';
 import to from 'await-to-js';
 import http from '@/axios';
 import LocalForage from '@/localforage';
+
 interface API_DATA {
   name: string;
   pwd: string;
 }
+
 const formRef = ref<FormInst | null>(null);
 const rules = {
   name: {
@@ -69,9 +71,11 @@ const formValue = reactive<API_DATA>({
   pwd: '',
   name: '',
 });
+
 function noSpace(value: string) {
   return !value.includes(' ');
 }
+
 function handleValidateClick(e: MouseEvent) {
   e.preventDefault();
   formRef.value?.validate(errors => {
@@ -84,10 +88,9 @@ function handleValidateClick(e: MouseEvent) {
 }
 
 interface LoginResult {
-  data: {
-    jwt: string;
-  };
+  jwt: string;
 }
+
 async function ApiLogin(data: API_DATA) {
   loading.value = true;
   const [, result] = await to<LoginResult, Axios.Error>(
@@ -96,7 +99,7 @@ async function ApiLogin(data: API_DATA) {
   loading.value = false;
   if (result) {
     // 登录成功
-    const { jwt } = result.data;
+    const { jwt } = result;
     await LocalForage.setItem('jwt', jwt);
     LocalForage.setItem('instance-type', 'admin').then(() => {
       // 存储成功

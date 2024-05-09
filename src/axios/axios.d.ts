@@ -1,8 +1,9 @@
 declare namespace Axios {
   interface Error {
-    code: number;
-    message: string;
+    status: number;
+    statusText: string;
   }
+
   interface Result {
     error: Error | null;
     data: any;

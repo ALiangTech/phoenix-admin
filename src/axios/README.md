@@ -2,21 +2,19 @@
 
 用于处理系统内的http请求
 
+## 接口统一返回格式
+
+```ts
+interface Response<T> {
+  data: T,
+  error: {
+    code: number,
+    msg: string,
+  }
+}
+```
+
 ## 拦截器
 
 addAuthorization 用于添加认证请求头
 normalizeResponse 用于序列化接口的统一返回
-
-## 请求错误
-
-请求过程中可能会发生一些错误
-
-### 分类
-
-#### http错误
-
-非200的http状态处理
-
-#### 业务自定义错误
-
-实际业务过程中在响应体中插入错误
