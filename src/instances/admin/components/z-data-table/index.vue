@@ -4,7 +4,7 @@
       <n-data-table
         :columns="columns"
         :data="data"
-        :pagination="pagination"
+        :pagination="paginationReactive"
         :style="{ height: `${height}px` }"
         flex-height
       />
@@ -12,62 +12,52 @@
   </UseElementBounding>
 </template>
 
-<script lang="ts">
-import { defineComponent, reactive } from 'vue';
+<script setup lang="ts">
+import { reactive, ref } from 'vue';
 import { UseElementBounding } from '@vueuse/components';
 
+const props = defineProps<Props>();
+
+interface Props {
+  fetch: Function;
+}
+
+defineOptions({
+  name: 'ZDataTable',
+});
 const columns = [
   {
-    title: 'Name',
+    title: '昵称',
     key: 'name',
   },
   {
-    title: 'Age',
-    key: 'age',
-  },
-  {
-    title: 'Address',
-    key: 'address',
+    title: '创建时间',
+    key: 'createdOn',
   },
 ];
 
-const data = Array.from({ length: 46 }).map((_, index) => ({
-  key: index,
-  name: `Edward King ${index}`,
-  age: 32,
-  address: `London, Park Lane no. ${index}`,
-}));
-
-export default defineComponent({
-  name: 'ZDataTable',
-  components: { UseElementBounding },
-  props: {
-    fetch: {
-      type: Function, // 获取表格数据接口
-      required: true,
-    },
+const data = ref([]);
+const paginationReactive = reactive({
+  page: 1,
+  pageSize: 20,
+  showSizePicker: true,
+  pageSizes: [10, 20, 50, 100],
+  pageCount: 100,
+  onChange: (page: number) => {
+    paginationReactive.page = page;
   },
-  setup() {
-    const paginationReactive = reactive({
-      page: 1,
-      pageSize: 20,
-      showSizePicker: true,
-      pageSizes: [10, 20, 50, 100],
-      pageCount: 100,
-      onChange: (page: number) => {
-        paginationReactive.page = page;
-      },
-      onUpdatePageSize: (pageSize: number) => {
-        paginationReactive.pageSize = pageSize;
-        paginationReactive.page = 1;
-      },
-    });
-
-    return {
-      data,
-      columns,
-      pagination: paginationReactive,
-    };
+  onUpdatePageSize: (pageSize: number) => {
+    paginationReactive.pageSize = pageSize;
+    paginationReactive.page = 1;
   },
 });
+
+async function init() {
+  const { page, pageSize } = paginationReactive;
+  const { record, pageCount } = await props.fetch({ page, pageSize });
+  data.value = record;
+  paginationReactive.pageCount = pageCount;
+}
+
+init();
 </script>
