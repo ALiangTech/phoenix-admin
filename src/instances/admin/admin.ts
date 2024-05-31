@@ -1,4 +1,3 @@
-import './style.css';
 import type { App } from 'vue';
 import { createApp } from 'vue';
 import APP from './App.vue';
@@ -24,6 +23,7 @@ export default async function MountAdminInstance() {
 interface PermissionData {
   data: string[];
 }
+
 async function fetchPermissions() {
   // 获取权限码的逻辑
   const result = await http.get<any, PermissionData>('/v1/permission');
