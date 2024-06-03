@@ -11,6 +11,7 @@ import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 import Unocss from 'unocss/vite';
+
 export default defineConfig(({ command }) => {
   // 通用配置
   const common = {
@@ -60,7 +61,6 @@ export default defineConfig(({ command }) => {
     });
   } else {
     // command === 'build'
-    console.log('build');
     return mergeConfig(common, {
       // build 独有配置
       plugins: [
