@@ -24,11 +24,9 @@ const instanceMap: Map<InstanceType, InstanceRenderFun> = new Map([
 let instance: App;
 
 async function render() {
-  const type = unref(instanceType);
+  const type = unref(instanceType) || 'login'; // 添加一个login默认值 防止手动修改了本地存放的实例类型导致找不到实例函数
   // 根据实例类型获取对应的实例函数
-  const instanceFunction = type
-    ? instanceMap.get(type as InstanceType)
-    : instanceMap.get('login');
+  const instanceFunction = instanceMap.get(type);
 
   if (instanceFunction) {
     instance && instance.unmount(); // 挂载新的实例之前 卸载旧实例
