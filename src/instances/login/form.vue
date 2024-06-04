@@ -47,6 +47,9 @@ import type { FormInst } from 'naive-ui';
 import to from 'await-to-js';
 import http from '@/axios';
 import LocalForage from '@/localforage';
+import { useModifyInstanceType } from '@/hooks';
+
+const { modifyInstanceType } = useModifyInstanceType();
 
 interface API_DATA {
   name: string;
@@ -103,7 +106,7 @@ async function ApiLogin(data: API_DATA) {
     await LocalForage.setItem('jwt', jwt);
     LocalForage.setItem('instance-type', 'admin').then(() => {
       // 存储成功
-      window.location.reload();
+      modifyInstanceType('admin'); // 修改要渲染实例类型 这边修改 主容器就会修改渲染实例
     });
   }
 }

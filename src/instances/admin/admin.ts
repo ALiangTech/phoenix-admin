@@ -17,7 +17,8 @@ export default async function MountAdminInstance() {
   // 路由挂载
   await MountRouterToApp(app);
   // 页面挂载
-  app.mount('#app');
+  app.mount('#subApp');
+  return app;
 }
 
 interface PermissionData {
