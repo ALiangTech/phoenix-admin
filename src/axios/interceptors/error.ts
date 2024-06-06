@@ -1,11 +1,10 @@
 import type { AxiosInstance } from 'axios';
-import * as localforage from 'localforage';
 import { useDiscrete } from '@/hooks';
 // 错误字典
 const errorDic: Map<number, Function> = new Map();
 errorDic.set(401, async () => {
   // 清除jwt
-  await localforage.clear();
+  localStorage.clear();
 });
 errorDic.set(0, (msg: string) => {
   // 网络异常

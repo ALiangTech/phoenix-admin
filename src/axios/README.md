@@ -6,11 +6,11 @@
 
 ```ts
 interface Response<T> {
-  data: T,
+  data: T;
   error: {
-    code: number,
-    msg: string,
-  }
+    code: number;
+    msg: string;
+  };
 }
 ```
 
