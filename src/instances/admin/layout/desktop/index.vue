@@ -16,9 +16,9 @@ const collapsed = ref(true);
         :collapsed-width="64"
         :width="200"
         :native-scrollbar="false"
-        bordered
         collapse-mode="width"
-        content-style="height:100vh;display:flex;flex-direction:column;"
+        class="m-4 rounded-md border-1 border-solid border-gray-300 dark:border-gray-700 overflow-hidden"
+        content-style="height:calc(100vh - 2rem - 2px);display:flex;flex-direction:column;"
       >
         <!-- logo -->
         <div class="flex justify-center items-center pt-4">
@@ -28,8 +28,17 @@ const collapsed = ref(true);
         <NavMenu class="flex-1"></NavMenu>
         <div @click="collapsed = !collapsed">折叠</div>
       </n-layout-sider>
-      <n-layout-content content-style="height:100vh">
-        <div class="m-l-24px h-full overflow-auto">
+      <n-layout-content
+        content-style="height:100vh;display:flex;flex-direction:column;"
+      >
+        <div
+          class="h-42px m-y-4 m-r-4 rounded-md border-1 border-solid border-gray-300 dark:border-gray-700 overflow-hidden"
+        >
+          header
+        </div>
+        <div
+          class="flex-1 m-b-4 m-r-4 overflow-auto rounded-md border-1 border-solid border-gray-300 dark:border-gray-700 overflow-hidden"
+        >
           <router-view></router-view>
         </div>
       </n-layout-content>
