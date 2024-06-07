@@ -28,6 +28,8 @@ jobs:
           node-version: 18
       - name: 安装pnpm
         run: npm install -g pnpm
+      - name: 查看目录
+        run: ls
       - name: 安装项目依赖
         run: pnpm install
       - name: 构建
