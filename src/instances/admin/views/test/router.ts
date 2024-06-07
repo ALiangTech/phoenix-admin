@@ -21,6 +21,7 @@ const login: RouteRecordRaw = {
         code: 'xx',
         menu: {
           label: 'test2',
+          icon: '',
         },
       },
       component: Test2,

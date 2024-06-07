@@ -36,11 +36,17 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { switchAppearance, switchTheme } from '@/theme';
+import type { Appearance } from '@/theme';
 defineOptions({
   name: 'SettingAdvanced',
 });
 // 整体外观
-const appearances = [
+interface AppearanceItem {
+  label: string;
+  value: Appearance;
+  color: string;
+}
+const appearances: AppearanceItem[] = [
   {
     label: '跟随系统',
     value: 'system',
@@ -58,7 +64,7 @@ const appearances = [
   },
 ];
 const activeAppearance = ref('system');
-function selectAppearance(value: string) {
+function selectAppearance(value: Appearance) {
   activeAppearance.value = value;
   switchAppearance(value);
 }

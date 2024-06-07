@@ -47,16 +47,16 @@ function onEnter(el: gsap.TweenTarget, done: () => void) {
 
 // 当进入过渡完成时调用。
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function onAfterEnter(el: any) {}
+function onAfterEnter() {}
 
 // 当进入过渡在完成之前被取消时调用
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function onEnterCancelled(el: any) {}
+function onEnterCancelled() {}
 
 // 在 leave 钩子之前调用
 // 大多数时候，你应该只会用到 leave 钩子
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function onBeforeLeave(el: any) {
+function onBeforeLeave() {
   // t1.fromTo(el,{scale: 1 }, { scale: 0.85, duration: 1 })
 }
 
@@ -83,9 +83,9 @@ function onLeave(el: gsap.TweenTarget, done: () => void) {
 // 在离开过渡完成、
 // 且元素已从 DOM 中移除时调用
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function onAfterLeave(el: any) {}
+function onAfterLeave() {}
 
 // 仅在 v-show 过渡中可用
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function onLeaveCancelled(el: any) {}
+function onLeaveCancelled() {}
 </script>

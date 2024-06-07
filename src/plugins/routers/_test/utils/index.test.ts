@@ -1,4 +1,4 @@
-import { createFullPathMenuData } from '@admin/routers/utils';
+import { createFullPathMenuData } from '@/plugins/routers/utils';
 import { expect, test } from 'vitest';
 import type { RouteRecordRaw } from 'vue-router';
 
@@ -22,6 +22,7 @@ const testData: RouteRecordRaw[] = [
             meta: {
               menu: {
                 label: '账号管理',
+                icon: 'chart-graph',
               },
             },
             component: () => import('./accounts/accounts.vue'),
@@ -31,6 +32,7 @@ const testData: RouteRecordRaw[] = [
             meta: {
               menu: {
                 label: '角色管理',
+                icon: 'chart-graph',
               },
             },
             component: () => import('./roles/roles.vue'),
@@ -60,6 +62,7 @@ const targetData: RouteRecordRaw[] = [
             meta: {
               menu: {
                 label: '账号管理',
+                icon: 'chart-graph',
               },
             },
             component: () => import('./accounts/accounts.vue'),
@@ -69,6 +72,7 @@ const targetData: RouteRecordRaw[] = [
             meta: {
               menu: {
                 label: '角色管理',
+                icon: '',
               },
             },
             component: () => import('./roles/roles.vue'),
