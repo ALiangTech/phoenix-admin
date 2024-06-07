@@ -62,6 +62,7 @@ export default defineConfig(({ command }) => {
   } else {
     // command === 'build'
     return mergeConfig(common, {
+      base: './',
       // build 独有配置
       plugins: [
         compression({ include: [/\.(js)$/, /\.(css)$/, /\.(html)$/] }), // 构建产物压缩 gzip
