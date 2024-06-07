@@ -13,7 +13,6 @@ permissions:
   pages: write
   id-token: write
 
-  
 jobs:
   build:
     name: 打包
