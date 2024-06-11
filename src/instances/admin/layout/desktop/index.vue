@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import NavMenu from './menu/menu.vue';
+import CollapsibleMenu from './CollapsibleMenu.vue';
 import { ref } from 'vue';
 
 defineOptions({
@@ -26,7 +27,7 @@ const collapsed = ref(true);
         </div>
         <!--菜单-->
         <NavMenu class="flex-1"></NavMenu>
-        <div @click="collapsed = !collapsed">折叠</div>
+        <CollapsibleMenu v-model="collapsed">折叠</CollapsibleMenu>
       </n-layout-sider>
       <n-layout-content
         content-style="height:100vh;display:flex;flex-direction:column;"
