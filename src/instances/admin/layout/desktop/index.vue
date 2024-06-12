@@ -2,12 +2,21 @@
 import NavMenu from './menu/menu.vue';
 import CollapsibleMenu from './CollapsibleMenu.vue';
 import LayoutHeader from '@admin/layout/desktop/header.vue';
-import { ref } from 'vue';
+import { ref, watchPostEffect, unref } from 'vue';
+import { gsap } from 'gsap';
 
 defineOptions({
   name: 'DesktopLayoutEntry',
 });
 const collapsed = ref(true);
+watchPostEffect(() => {
+  if (unref(collapsed)) {
+    // 折叠
+    gsap.to('.w-animation', { width: '20px', duration: 0.5 });
+  } else {
+    gsap.to('.w-animation', { width: '142px', duration: 0.5 });
+  }
+});
 </script>
 
 <template>
@@ -24,9 +33,10 @@ const collapsed = ref(true);
       >
         <!-- logo -->
         <div class="flex justify-center items-center">
-          <span class="text-10 font-700 bg-animate-color"
-            >x<span v-show="!collapsed">-admin</span>
-          </span>
+          <span
+            class="text-8 font-700 bg-animate-color text-nowrap w-20px w-animation"
+            >x-admin</span
+          >
         </div>
         <!--菜单-->
         <NavMenu class="flex-1"></NavMenu>

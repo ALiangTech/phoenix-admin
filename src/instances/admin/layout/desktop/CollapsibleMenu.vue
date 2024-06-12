@@ -36,19 +36,19 @@ const themeVars = useThemeVars();
 .no-collapsed {
   --top-transform: rotateZ(-45deg) translateY(6px);
   --bottom-transform: rotateZ(45deg) translateY(-6px);
-  --middle-transform: translateX(13px);
+  --middle-transform: translateX(12px);
 }
 
 .collapsed {
   --top-transform: rotateZ(45deg) translate(6px, 0px);
   --bottom-transform: rotateZ(-45deg) translate(6px, 0px);
-  --middle-transform: translateX(-6px);
+  --middle-transform: translateX(-3px);
 }
 
 .bar {
   display: block;
-  height: 2.5px;
-  width: 26px;
+  height: 3px;
+  width: 24px;
   background: var(--primary-color);
   margin: 6px auto;
   transition: all 0.7s ease;
