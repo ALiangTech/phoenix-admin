@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useThemeVars } from 'naive-ui';
+
 defineOptions({
   name: 'CollapsibleMenu',
 });
@@ -9,7 +10,13 @@ const themeVars = useThemeVars();
 
 <template>
   <div class="flex justify-end" @click="collapsed = !collapsed">
-    <div :class="['menu', collapsed ? 'collapsed' : 'no-collapsed']">
+    <div
+      :class="[
+        'menu',
+        collapsed ? 'collapsed' : 'no-collapsed',
+        'cursor-pointer',
+      ]"
+    >
       <div class="bar arrow-top"></div>
       <div class="bar arrow-middle"></div>
       <div class="bar arrow-bottom"></div>
@@ -29,18 +36,18 @@ const themeVars = useThemeVars();
 .no-collapsed {
   --top-transform: rotateZ(-45deg) translateY(6px);
   --bottom-transform: rotateZ(45deg) translateY(-6px);
-  --middle-transform: translateX(12px);
+  --middle-transform: translateX(13px);
 }
 
 .collapsed {
-  --top-transform: rotateZ(45deg) translateY(6px);
-  --bottom-transform: rotateZ(-45deg) translateY(-6px);
-  --middle-transform: translateX(-12px);
+  --top-transform: rotateZ(45deg) translate(6px, 0px);
+  --bottom-transform: rotateZ(-45deg) translate(6px, 0px);
+  --middle-transform: translateX(-6px);
 }
 
 .bar {
   display: block;
-  height: 3px;
+  height: 2.5px;
   width: 26px;
   background: var(--primary-color);
   margin: 6px auto;
