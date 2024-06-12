@@ -1,5 +1,5 @@
 <template>
-  <nav class="pt-16px">
+  <nav>
     <n-menu
       v-model:value="activeKey"
       :collapsed-icon-size="22"
