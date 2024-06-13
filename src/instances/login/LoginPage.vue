@@ -1,6 +1,11 @@
 <template>
   <main class="h-screen w-screen relative ani-bg">
+    <div>
+      <GradientLine class="absolute top-50%"></GradientLine>
+      <GradientLine class="rotate-90"></GradientLine>
+    </div>
     <section
+      v-if="false"
       class="absoluteCenter w-70% h-lg bg-light min-w-600px max-w-800px flex justify-between rounded-10px p-1.5"
     >
       <div class="flex-1">
@@ -25,24 +30,16 @@
 <script setup lang="ts">
 import LoginForm from './form.vue';
 import LoginLogo from './logo.vue';
+import GradientLine from '@login/logo/gradient-line.vue';
 defineOptions({
   name: 'LoginApp',
 });
-// 浅蓝色：#add8e6
-// 天蓝色：#87ceeb
-// 淡绿色：#98fb98
-// 薄荷绿：#98ff98
-// 水蓝色：#66cdaa
 </script>
 
 <style scoped>
 .ani-bg {
-  --linear-gradient-direction: right;
+  --linear-gradient-direction: #130c1a;
 
-  background: linear-gradient(
-    to var(--linear-gradient-direction),
-    #add8e6,
-    #87ceeb
-  );
+  background: var(--linear-gradient-direction);
 }
 </style>

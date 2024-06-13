@@ -12,6 +12,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+#app {
+  overflow: hidden;
+}
+
 .iconpark-icon {
   width: 1em;
   height: 1em;

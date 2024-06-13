@@ -39,7 +39,11 @@ async function render() {
  * 流程: 动画 渲染 动画
  */
 async function applyAnimation() {
-  gsap.fromTo('#subApp', { scale: 0 }, { scale: 1, duration: 2 });
+  gsap.fromTo(
+    '#subApp',
+    { translateX: '100vw' },
+    { translateX: 0, duration: 2 },
+  );
   await render();
 }
 
