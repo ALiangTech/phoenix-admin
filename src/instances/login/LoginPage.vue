@@ -1,9 +1,12 @@
 <template>
-  <main class="h-screen w-screen relative ani-bg">
-    <div>
+  <main class="h-screen w-screen relative grid ani-bg">
+    <div class="flex-1 relative">
+      <Logo></Logo>
+      <BgGrid></BgGrid>
       <GradientLine class="absolute top-50%"></GradientLine>
-      <GradientLine class="rotate-90"></GradientLine>
+      <GradientLine class="absolute top-50% rotate-90"></GradientLine>
     </div>
+    <div>login</div>
     <section
       v-if="false"
       class="absoluteCenter w-70% h-lg bg-light min-w-600px max-w-800px flex justify-between rounded-10px p-1.5"
@@ -21,7 +24,9 @@
         </div>
         <LoginForm></LoginForm>
         <div class="flex-1 flex flex-col flex-justify-end pb-4">
-          <div><n-button text>没有账号?注册一个吧</n-button></div>
+          <div>
+            <n-button text>没有账号?注册一个吧</n-button>
+          </div>
         </div>
       </div>
     </section>
@@ -31,6 +36,9 @@
 import LoginForm from './form.vue';
 import LoginLogo from './logo.vue';
 import GradientLine from '@login/logo/gradient-line.vue';
+import BgGrid from '@login/logo/grid.vue';
+import Logo from '@login/logo/logo.vue';
+
 defineOptions({
   name: 'LoginApp',
 });
@@ -41,5 +49,6 @@ defineOptions({
   --linear-gradient-direction: #130c1a;
 
   background: var(--linear-gradient-direction);
+  grid-template-columns: 2fr 1fr;
 }
 </style>

@@ -3,7 +3,6 @@
 </template>
 
 <script setup lang="ts">
-import { gsap } from 'gsap';
 import MountLoginInstance from './instances/login/login';
 import MountAdminInstance from '@admin/admin.ts';
 import { unref, watchPostEffect } from 'vue';
@@ -39,11 +38,6 @@ async function render() {
  * 流程: 动画 渲染 动画
  */
 async function applyAnimation() {
-  gsap.fromTo(
-    '#subApp',
-    { translateX: '100vw' },
-    { translateX: 0, duration: 2 },
-  );
   await render();
 }
 

@@ -5,7 +5,7 @@ defineOptions({
 </script>
 
 <template>
-  <div class="h-1px w-full gradient-color"></div>
+  <div class="h-1px gradient-color"></div>
 </template>
 
 <style scoped>
@@ -17,5 +17,6 @@ defineOptions({
     rgb(255 141 26 / 100%) 56%,
     rgb(167 255 79 / 19.2%) 92%
   );
+  width: 100%;
 }
 </style>
