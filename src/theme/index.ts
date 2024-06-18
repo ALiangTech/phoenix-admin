@@ -65,11 +65,11 @@ const themeModules = Object.fromEntries(
 /**
  * @desc 切换主题
  */
-export function switchTheme(themeType: string) {
+export async function switchTheme(themeType: string) {
   const osThemeRef = useOsTheme();
   const fetch = themeModules[themeType];
   fetch &&
-    fetch().then((overridesConfig: any) => {
+    (await fetch().then((overridesConfig: any) => {
       const { lightThemeOverrides, darkThemeOverrides } =
         overridesConfig.default as any;
       function getCurrentOverrideTheme() {
@@ -88,6 +88,5 @@ export function switchTheme(themeType: string) {
         }
       }
       config.themeOverrides = getCurrentOverrideTheme();
-      console.log(config.themeOverrides);
-    });
+    }));
 }

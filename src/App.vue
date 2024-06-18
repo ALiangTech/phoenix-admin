@@ -9,6 +9,7 @@ import { unref, watchPostEffect } from 'vue';
 import { useModifyInstanceType } from '@/hooks';
 import type { InstanceType } from '@/hooks';
 import type { App } from 'vue';
+import { switchTheme } from '@/theme';
 
 const { instanceType } = useModifyInstanceType();
 
@@ -29,6 +30,7 @@ async function render() {
 
   if (instanceFunction) {
     instance && instance.unmount(); // 挂载新的实例之前 卸载旧实例
+    await switchTheme('purple'); // 默认紫色主题 //todo 可能需要优化 后面在想想主题的设置
     instance = await instanceFunction();
   }
 }

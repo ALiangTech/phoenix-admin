@@ -12,8 +12,8 @@
       >
         <div class="w-50% rounded-10px flex flex-col">
           <div class="pb-2 text-#aa54ff">
-            <h2 class="m0 text-#aa54ff">LOG IN TO THE SYSTEM</h2>
-            <span>欢迎来到x-admin平台</span>
+            <h2 class="m0 text-8 text-#aa54ff">LOG IN TO THE SYSTEM</h2>
+            <span class="text-6">欢迎来到x-admin平台</span>
           </div>
           <LoginForm></LoginForm>
           <div class="flex-1 flex flex-col flex-justify-end pb-4">
@@ -27,14 +27,14 @@
   </ThemeConfig>
 </template>
 <script setup lang="ts">
-import { createThemeConfigProvider, switchTheme } from '@/theme';
+import { createThemeConfigProvider } from '@/theme';
 import LoginForm from './form.vue';
 import GradientLine from '@login/logo/gradient-line.vue';
 import BgGrid from '@login/logo/grid.vue';
 import Logo from '@login/logo/logo.vue';
 
 const ThemeConfig = createThemeConfigProvider();
-switchTheme('purple');
+
 defineOptions({
   name: 'LoginApp',
 });
