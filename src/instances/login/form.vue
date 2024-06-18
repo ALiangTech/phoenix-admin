@@ -1,5 +1,5 @@
 <template>
-  <div class="px-6 text-left">
+  <div class="text-left">
     <n-form
       ref="formRef"
       :label-width="80"
@@ -32,7 +32,6 @@
       <n-button
         :loading="loading"
         block
-        circle
         type="primary"
         @click="handleValidateClick"
       >

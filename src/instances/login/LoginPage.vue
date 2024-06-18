@@ -1,48 +1,50 @@
 <template>
-  <main class="h-screen w-screen relative ani-bg">
-    <section
-      class="absoluteCenter w-70% h-lg bg-light min-w-600px max-w-800px flex justify-between rounded-10px p-1.5"
-    >
-      <div class="flex-1">
-        <LoginLogo></LoginLogo>
+  <ThemeConfig>
+    <main class="h-screen w-screen relative grid ani-bg">
+      <div class="flex-1 relative">
+        <Logo></Logo>
+        <BgGrid></BgGrid>
+        <GradientLine class="absolute top-50%"></GradientLine>
+        <GradientLine class="absolute top-50% rotate-90"></GradientLine>
       </div>
-      <div class="w-40% h-full bg-white text-center rounded-10px flex flex-col">
-        <div class="pt-8 pb-5">
-          <span class="i-typcn-anchor w-2rem h-2rem inline-block"></span>
+      <section
+        class="flex justify-center items-center rounded-10px p-1.5 text-nowrap"
+      >
+        <div class="w-50% rounded-10px flex flex-col">
+          <div class="pb-2 text-#aa54ff">
+            <h2 class="m0 text-8 text-#aa54ff">LOG IN TO THE SYSTEM</h2>
+            <span class="text-6">欢迎来到x-admin平台</span>
+          </div>
+          <LoginForm></LoginForm>
+          <div class="flex-1 flex flex-col flex-justify-end pb-4">
+            <div>
+              <n-button text>没有账号?注册一个吧</n-button>
+            </div>
+          </div>
         </div>
-        <div class="pb-2">
-          <h2 class="m0">欢迎回来!</h2>
-          <span>请输入账号和密码</span>
-        </div>
-        <LoginForm></LoginForm>
-        <div class="flex-1 flex flex-col flex-justify-end pb-4">
-          <div><n-button text>没有账号?注册一个吧</n-button></div>
-        </div>
-      </div>
-    </section>
-  </main>
+      </section>
+    </main>
+  </ThemeConfig>
 </template>
 <script setup lang="ts">
+import { createThemeConfigProvider } from '@/theme';
 import LoginForm from './form.vue';
-import LoginLogo from './logo.vue';
+import GradientLine from '@login/logo/gradient-line.vue';
+import BgGrid from '@login/logo/grid.vue';
+import Logo from '@login/logo/logo.vue';
+
+const ThemeConfig = createThemeConfigProvider();
+
 defineOptions({
   name: 'LoginApp',
 });
-// 浅蓝色：#add8e6
-// 天蓝色：#87ceeb
-// 淡绿色：#98fb98
-// 薄荷绿：#98ff98
-// 水蓝色：#66cdaa
 </script>
 
 <style scoped>
 .ani-bg {
-  --linear-gradient-direction: right;
+  --linear-gradient-direction: #130c1a;
 
-  background: linear-gradient(
-    to var(--linear-gradient-direction),
-    #add8e6,
-    #87ceeb
-  );
+  background: var(--linear-gradient-direction);
+  grid-template-columns: 2fr 1fr;
 }
 </style>
