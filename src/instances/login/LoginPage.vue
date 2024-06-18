@@ -1,44 +1,40 @@
 <template>
-  <main class="h-screen w-screen relative grid ani-bg">
-    <div class="flex-1 relative">
-      <Logo></Logo>
-      <BgGrid></BgGrid>
-      <GradientLine class="absolute top-50%"></GradientLine>
-      <GradientLine class="absolute top-50% rotate-90"></GradientLine>
-    </div>
-    <div>login</div>
-    <section
-      v-if="false"
-      class="absoluteCenter w-70% h-lg bg-light min-w-600px max-w-800px flex justify-between rounded-10px p-1.5"
-    >
-      <div class="flex-1">
-        <LoginLogo></LoginLogo>
+  <ThemeConfig>
+    <main class="h-screen w-screen relative grid ani-bg">
+      <div class="flex-1 relative">
+        <Logo></Logo>
+        <BgGrid></BgGrid>
+        <GradientLine class="absolute top-50%"></GradientLine>
+        <GradientLine class="absolute top-50% rotate-90"></GradientLine>
       </div>
-      <div class="w-40% h-full bg-white text-center rounded-10px flex flex-col">
-        <div class="pt-8 pb-5">
-          <span class="i-typcn-anchor w-2rem h-2rem inline-block"></span>
-        </div>
-        <div class="pb-2">
-          <h2 class="m0">欢迎回来!</h2>
-          <span>请输入账号和密码</span>
-        </div>
-        <LoginForm></LoginForm>
-        <div class="flex-1 flex flex-col flex-justify-end pb-4">
-          <div>
-            <n-button text>没有账号?注册一个吧</n-button>
+      <section
+        class="flex justify-center items-center rounded-10px p-1.5 text-nowrap"
+      >
+        <div class="w-50% rounded-10px flex flex-col">
+          <div class="pb-2 text-#aa54ff">
+            <h2 class="m0 text-#aa54ff">LOG IN TO THE SYSTEM</h2>
+            <span>欢迎来到x-admin平台</span>
+          </div>
+          <LoginForm></LoginForm>
+          <div class="flex-1 flex flex-col flex-justify-end pb-4">
+            <div>
+              <n-button text>没有账号?注册一个吧</n-button>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
+    </main>
+  </ThemeConfig>
 </template>
 <script setup lang="ts">
+import { createThemeConfigProvider, switchTheme } from '@/theme';
 import LoginForm from './form.vue';
-import LoginLogo from './logo.vue';
 import GradientLine from '@login/logo/gradient-line.vue';
 import BgGrid from '@login/logo/grid.vue';
 import Logo from '@login/logo/logo.vue';
 
+const ThemeConfig = createThemeConfigProvider();
+switchTheme('purple');
 defineOptions({
   name: 'LoginApp',
 });
