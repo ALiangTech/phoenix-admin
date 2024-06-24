@@ -23,7 +23,7 @@ defineOptions({
   --linear-gradient-direction: #130c1a;
 
   display: grid;
-  grid-template-columns: 6fr 4fr;
+  grid-template-columns: 7fr 3fr;
   background: var(--linear-gradient-direction);
 }
 </style>
