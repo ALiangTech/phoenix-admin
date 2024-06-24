@@ -19,7 +19,10 @@ const config: UserConfig<any> = defineConfig({
   ],
   theme: {},
   rules: [
-    [/^grid-cols-(\d+)\/(\d+)$/, ([, a, b]) => ({ 'grid-template-columns': `${a}fr ${b}fr` })],
+    [
+      /^grid-cols-(\d+)\/(\d+)$/,
+      ([, a, b]) => ({ 'grid-template-columns': `${a}fr ${b}fr` }),
+    ],
   ],
 });
 
