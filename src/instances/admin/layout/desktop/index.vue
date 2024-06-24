@@ -31,7 +31,7 @@ watchPostEffect(() => {
         class="m-4 rounded-md border-1 border-solid border-gray-300 dark:border-gray-700 overflow-hidden"
         content-style="height:calc(100vh - 2rem - 2px);display:flex;flex-direction:column;"
       >
-        <!-- logo -->
+        <!-- logoComponents -->
         <div class="flex justify-center items-center">
           <span
             class="text-8 font-700 bg-animate-color text-nowrap w-20px w-animation"
