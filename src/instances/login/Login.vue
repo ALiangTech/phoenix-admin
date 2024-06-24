@@ -1,7 +1,7 @@
 <template>
   <ThemeConfig>
-    <main class="h-screen w-screen login-layout">
-      <LoginLogo></LoginLogo>
+    <main class="grid h-screen w-screen login-layout xl:grid-cols-7/3">
+      <LoginLogo class="hidden xl:grid"></LoginLogo>
       <LoginForm></LoginForm>
     </main>
   </ThemeConfig>
@@ -22,8 +22,6 @@ defineOptions({
 .login-layout {
   --linear-gradient-direction: #130c1a;
 
-  display: grid;
-  grid-template-columns: 7fr 3fr;
   background: var(--linear-gradient-direction);
 }
 </style>
