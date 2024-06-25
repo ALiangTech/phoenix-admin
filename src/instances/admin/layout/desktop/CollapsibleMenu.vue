@@ -9,13 +9,14 @@ const themeVars = useThemeVars();
 </script>
 
 <template>
-  <div class="flex justify-end" @click="collapsed = !collapsed">
+  <div class="flex justify-center items-center">
     <div
       :class="[
         'menu',
         collapsed ? 'collapsed' : 'no-collapsed',
         'cursor-pointer',
       ]"
+      @click="collapsed = !collapsed"
     >
       <div class="bar arrow-top"></div>
       <div class="bar arrow-middle"></div>
@@ -47,16 +48,16 @@ const themeVars = useThemeVars();
 
 .bar {
   display: block;
-  height: 3px;
-  width: 24px;
+  height: 2px;
+  width: 20px;
   background: var(--primary-color);
-  margin: 6px auto;
+  margin: 4px auto;
   transition: all 0.7s ease;
 }
 
 .menu:hover .arrow-top {
   background: var(--yellow);
-  width: 12px;
+  width: 8px;
   transform: var(--top-transform);
 }
 
@@ -68,6 +69,6 @@ const themeVars = useThemeVars();
 .menu:hover .arrow-bottom {
   background: var(--yellow);
   transform: var(--bottom-transform);
-  width: 12px;
+  width: 8px;
 }
 </style>
