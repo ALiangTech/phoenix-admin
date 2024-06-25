@@ -3,21 +3,12 @@ import NavMenu from './menu/menu.vue';
 import CollapsibleMenu from './CollapsibleMenu.vue';
 import LayoutHeader from '@admin/layout/desktop/header.vue';
 import Breadcrumb from './Breadcrumb.vue';
-import { ref, watchPostEffect, unref } from 'vue';
-import { gsap } from 'gsap';
+import { ref } from 'vue';
 
 defineOptions({
   name: 'DesktopLayoutEntry',
 });
 const collapsed = ref(true);
-watchPostEffect(() => {
-  if (unref(collapsed)) {
-    // 折叠
-    gsap.to('.w-animation', { width: '20px', duration: 0.5 });
-  } else {
-    gsap.to('.w-animation', { width: '142px', duration: 0.5 });
-  }
-});
 </script>
 
 <template>
