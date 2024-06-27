@@ -2,8 +2,9 @@ import axios from 'axios';
 import addAuthorization from './interceptors/addAuthorization';
 import normalizeResponse from './interceptors/normalizeResponse';
 import normalizeError from './interceptors/error';
+
 const http = axios.create({
-  baseURL: import.meta.env.VITE_HTTP_URL,
+  // 这里没有配置baseURL 会走vite代理 分发到后端
   timeout: 6000,
 });
 addAuthorization(http);

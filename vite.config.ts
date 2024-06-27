@@ -53,6 +53,23 @@ export default defineConfig(({ command }) => {
     },
     envDir: './env',
     test: {},
+    server: {
+      host: '0.0.0.0',
+      port: 5173, // 默认端口
+      open: true, // 打开浏览器
+      proxy: {
+        '/pf_admin': {
+          target: 'http://localhost:9001',
+          changeOrigin: true,
+          rewrite: path => path.replace(/^\/pf_admin/, ''),
+        },
+        '/pf_login': {
+          target: 'http://localhost:9001',
+          changeOrigin: true,
+          rewrite: path => path.replace(/^\/pf_login/, ''),
+        },
+      },
+    },
   };
   if (command === 'serve') {
     return mergeConfig(common, {

@@ -6,9 +6,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title><%- title %></title>
   <script src="https://lf1-cdn-tos.bytegoofy.com/obj/iconpark/svg_30212_5.c48c9c96716387e55e9887ff76084275.js"></script>
+  <style>
+      .center {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+      }
+
+      .loader {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          display: inline-block;
+          border-top: 4px solid purple;
+          border-right: 4px solid transparent;
+          box-sizing: border-box;
+          animation: rotation 1s linear infinite;
+      }
+
+      .loader::after {
+          content: '';
+          box-sizing: border-box;
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          border-bottom: 4px solid #FF3D00;
+          border-left: 4px solid transparent;
+      }
+
+      @keyframes rotation {
+          0% {
+              transform: rotate(0deg);
+          }
+          100% {
+              transform: rotate(360deg);
+          }
+      }
+
+  </style>
 </head>
 <body>
-<div id="app">加载中...</div>
+<div id="app">
+  <div class="center">
+    <!-- 加载loading-->
+    <span class="loader"></span>
+  </div>
+</div>
 <script type="module" src="/src/main.ts"></script>
 </body>
 </html>
