@@ -78,3 +78,20 @@ interface response {
 #### 逻辑权限
 
 js里面的 通过全局保留权限实例来做？？？(暂定)
+
+# 接口请求代理
+
+场景：我现在请求的后端地址是localhost:8003 万一那一天又需要接入www.baidu.com
+其他都不需要修改 只需要在配置文件中配置一下
+
+解决：防止后续系统接入其他平台接口 统一代理
+
+给接口添加一个平台标识
+平台标识规范建议: pf_使用实例文件夹名称
+
+举例：
+http://localhost:5173/pf_login/v2/login -> http://localhost:8003/v2/login
+
+说明：前端发送的请求地址为/pf_login/v2/login 后端会自动代理到http://localhost:8003/v2/login
+
+生成/测试部署：需要在nginx配置文件中配置相关的代理规则

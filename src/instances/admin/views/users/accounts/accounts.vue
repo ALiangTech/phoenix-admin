@@ -13,7 +13,7 @@ export default defineComponent({
   components: { ZDataTable },
   setup() {
     const loadData = (params: any) => {
-      return http.get('/v1/users', { params });
+      return http.get('/pf_admin/v1/users', { params });
     };
     return {
       loadData,

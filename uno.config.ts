@@ -18,7 +18,12 @@ const config: UserConfig<any> = defineConfig({
     transformerAttributifyJsx(), // <--
   ],
   theme: {},
-  rules: [],
+  rules: [
+    [
+      /^grid-cols-(\d+)\/(\d+)$/,
+      ([, a, b]) => ({ 'grid-template-columns': `${a}fr ${b}fr` }),
+    ],
+  ],
 });
 
 export default config;

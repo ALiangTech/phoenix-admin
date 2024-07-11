@@ -27,6 +27,6 @@ interface PermissionData {
 
 async function fetchPermissions() {
   // 获取权限码的逻辑
-  const result = await http.get<any, PermissionData>('/v1/permission');
+  const result = await http.get<any, PermissionData>('/pf_admin/v1/permission');
   return new Set(result.data);
 }

@@ -3,9 +3,6 @@
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
-  color-scheme: light dark;
-  color: rgb(255 255 255 / 87%);
-  background-color: #242424;
   font-synthesis: none;
   text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
@@ -13,21 +10,7 @@
 }
 
 .iconpark-icon {
+  /* 图标默认大小设置 */
   width: 1em;
   height: 1em;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #fff;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
 }
