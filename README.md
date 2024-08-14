@@ -95,3 +95,7 @@ http://localhost:5173/pf_login/v2/login -> http://localhost:8003/v2/login
 说明：前端发送的请求地址为/pf_login/v2/login 后端会自动代理到http://localhost:8003/v2/login
 
 生成/测试部署：需要在nginx配置文件中配置相关的代理规则
+
+### 待办
+
+-[ ] 升级eslint 到eslint9

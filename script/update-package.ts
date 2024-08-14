@@ -9,7 +9,6 @@ interface PackageItem {
 }
 
 // 运行pnpm outdated 命令获取需要升级的包和升级的版本
-// todo pnpm oudated --json 可以直接获取json版本 后续在更新一下逻辑
 const up = spawn('pnpm', ['outdated', '--json']);
 
 up.stdout.on('data', data => {
@@ -18,12 +17,14 @@ up.stdout.on('data', data => {
   const version = JSON.parse(data);
   Object.entries(version).forEach(([packageName, packageInfo]) => {
     const { wanted, current, latest } = packageInfo as any;
-    packages.push({
-      packageName,
-      currentVersion: current,
-      latestVersion: latest,
-      wantedVersion: wanted,
-    });
+    if (packageName !== 'eslint') { // todo eslint 8 跟 eslint9 不兼容配置 先不升级eslint 后续在修复
+      packages.push({
+        packageName,
+        currentVersion: current,
+        latestVersion: latest,
+        wantedVersion: wanted
+      });
+    }
   });
 
   function* packageGenerator() {
