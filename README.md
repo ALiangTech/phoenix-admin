@@ -24,7 +24,7 @@ css 使用[原子css](https://antfu.me/posts/reimagine-atomic-css-zh)方式: [un
 
 -
 
-语法规范默认采用的是腾讯发布的一版规范 [alloy/vue](https://github.com/AlloyTeam/eslint-config-alloy/blob/master/README.zh-CN.md)
+语法规范默认采用的是腾讯发布代码规范 [alloy/vue](https://github.com/AlloyTeam/eslint-config-alloy/blob/master/README.zh-CN.md)
 
 - 风格规范默认采用Prettier的官方默认风格
 -
@@ -99,3 +99,5 @@ http://localhost:5173/pf_login/v2/login -> http://localhost:8003/v2/login
 ### 待办
 
 -[ ] 升级eslint 到eslint9
+-[ ] 添加eslint 规则禁止使用localStorage/sessionStorage 只能使用localforage
+-[ ] 添加vite插件处理svg文件 直接导入作为组件使用

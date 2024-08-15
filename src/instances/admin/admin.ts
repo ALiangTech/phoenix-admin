@@ -13,7 +13,7 @@ export default async function MountAdminInstance() {
   // 获取用户信息后挂载权限组件相关
   // 注册权限插件
   const permissionSet = await fetchPermissions();
-  registerPermission(app, { permissionSet });
+  registerPermission(app, { permissionSet }); // 先注册权限插件
   // 路由挂载
   await MountRouterToApp(app);
   // 页面挂载
