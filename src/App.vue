@@ -1,37 +1,37 @@
 <template>
-  <div id="subApp"></div>
+  <section id="subApp"></section>
 </template>
 
 <script setup lang="ts">
 import MountLoginInstance from './instances/login/login';
 import MountAdminInstance from '@admin/admin.ts';
-import { unref, watchPostEffect } from 'vue';
-import { useModifyInstanceType } from '@/hooks';
-import type { InstanceType } from '@/hooks';
 import type { App } from 'vue';
+import { unref, watchPostEffect } from 'vue';
+import type { InstanceType } from '@/hooks';
+import { useModifyInstanceType } from '@/hooks';
 import { switchTheme } from '@/theme';
 
 const { instanceType } = useModifyInstanceType();
+let instance: App;
 
 /**
- * 实例对象，键为实例类型，值为对应实例的函数
+ * 挂载实例函数，键为实例类型，值为对应实例的挂载函数
  */
 const instanceMap: Map<InstanceType, InstanceRenderFun> = new Map([
   ['login', MountLoginInstance],
-  ['admin', MountAdminInstance],
+  ['admin', MountAdminInstance] // todo 改成按需导入 首页加载资源更少
 ]);
 
-let instance: App;
-
-async function render() {
+// 执行挂载函数
+async function executeMountFunction() {
   const type = unref(instanceType) || 'login'; // 添加一个login默认值 防止手动修改了本地存放的实例类型导致找不到实例函数
   // 根据实例类型获取对应的实例函数
-  const instanceFunction = instanceMap.get(type);
+  const instanceMountFunction = instanceMap.get(type);
 
-  if (instanceFunction) {
+  if (instanceMountFunction) {
     instance && instance.unmount(); // 挂载新的实例之前 卸载旧实例
     await switchTheme('purple'); // 默认紫色主题 //todo 可能需要优化 后面在想想主题的设置
-    instance = await instanceFunction();
+    instance = await instanceMountFunction();
   }
 }
 
@@ -40,10 +40,10 @@ async function render() {
  * 流程: 动画 渲染 动画
  */
 async function applyAnimation() {
-  await render();
+  await executeMountFunction();
 }
 
 watchPostEffect(async () => {
-  await applyAnimation();
+  await applyAnimation(); // 监听实例类型的变化 执行挂载函数
 });
 </script>
