@@ -106,5 +106,5 @@ http://localhost:5173/pf_login/v2/login -> http://localhost:8003/v2/login
 ### 待办
 
 -[ ] 升级eslint 到eslint9
--[ ] 添加eslint 规则禁止使用localStorage/sessionStorage 只能使用localforage
+-[ ] 添加eslint 规则禁止使用localStorage/sessionStorage 只能使用LocalForage
 -[ ] 添加vite插件处理svg文件 直接导入作为组件使用
