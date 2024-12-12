@@ -2,12 +2,7 @@
 
 为了方便快速搭建管理系统类项目，抽离常用的功能组合起来
 
--[ ] 请求(基于axios二次封装请求模块)
--[ ] 权限控制
--[ ] 存储方式统一
--[ ] 主题切换
--[ ] 代码规范
--[ ] 单元测试
+-[ ] 请求(基于axios二次封装请求模块) -[ ] 权限控制 -[ ] 存储方式统一 -[ ] 主题切换 -[ ] 代码规范 -[ ] 单元测试
 
 项目采用多实例模式 整体分离成俩部分： 登录部分 + 业务部分 主要是方便权限计算
 
@@ -94,7 +89,7 @@ js里面的 通过全局保留权限实例来做？？？(暂定)
 解决：防止后续系统接入其他平台接口 统一代理
 
 给接口添加一个平台标识
-平台标识规范建议: pf_使用实例文件夹名称
+平台标识规范建议: pf\_使用实例文件夹名称
 
 举例：
 http://localhost:5173/pf_login/v2/login -> http://localhost:8003/v2/login
@@ -105,6 +100,4 @@ http://localhost:5173/pf_login/v2/login -> http://localhost:8003/v2/login
 
 ### 待办
 
--[ ] 升级eslint 到eslint9
--[ ] 添加eslint 规则禁止使用localStorage/sessionStorage 只能使用LocalForage
--[ ] 添加vite插件处理svg文件 直接导入作为组件使用
+-[ ] 升级eslint 到eslint9 -[ ] 添加eslint 规则禁止使用localStorage/sessionStorage 只能使用LocalForage -[ ] 添加vite插件处理svg文件 直接导入作为组件使用

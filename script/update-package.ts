@@ -17,12 +17,13 @@ up.stdout.on('data', data => {
   const version = JSON.parse(data);
   Object.entries(version).forEach(([packageName, packageInfo]) => {
     const { wanted, current, latest } = packageInfo as any;
-    if (packageName !== 'eslint') { // todo eslint 8 跟 eslint9 不兼容配置 先不升级eslint 后续在修复
+    if (packageName !== 'eslint') {
+      // todo eslint 8 跟 eslint9 不兼容配置 先不升级eslint 后续在修复
       packages.push({
         packageName,
         currentVersion: current,
         latestVersion: latest,
-        wantedVersion: wanted
+        wantedVersion: wanted,
       });
     }
   });

@@ -47,23 +47,3 @@ export function useLayoutType() {
   });
   return { currentLayout };
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
