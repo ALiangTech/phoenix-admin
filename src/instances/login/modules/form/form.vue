@@ -3,7 +3,7 @@
     <div class="rounded-10px flex flex-col">
       <div class="pb-2 text-#aa54ff">
         <h2 class="m0 text-8 text-#aa54ff">LOG IN TO THE SYSTEM</h2>
-        <span class="text-6">欢迎来到x-admin平台</span>
+        <span class="text-6">欢迎来到phoenix-admin平台</span>
       </div>
       <div class="text-left">
         <n-form
@@ -60,6 +60,10 @@ import to from 'await-to-js';
 import http from '@/axios';
 import LocalForage from '@/localforage';
 import { useModifyInstanceType } from '@/hooks';
+
+defineOptions({
+  name: 'LoginForm',
+});
 
 const { modifyInstanceType } = useModifyInstanceType();
 

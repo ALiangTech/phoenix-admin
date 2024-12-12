@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "eslint": "eslint --ext .js,.ts,.tsx,.vue .",
     "format": "prettier --write .",
-    "stylelint": "stylelint src/**/*.{css,vue}",
+    "stylelint": "stylelint src/**/*.{css,vue} --fix",
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "cypress:open": "cypress open",
@@ -99,7 +99,7 @@
       "stylelint-config-standard-vue"
     ],
     "rules": {
-      "declaration-property-value-no-unknown": true
+      "declaration-property-value-no-unknown": null
     }
   },
   "lint-staged": {

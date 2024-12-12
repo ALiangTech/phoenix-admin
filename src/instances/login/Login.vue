@@ -1,27 +1,31 @@
 <template>
   <ThemeConfig>
-    <main class="grid h-screen w-screen login-layout xl:grid-cols-7/3">
-      <LoginLogo class="hidden xl:grid"></LoginLogo>
-      <LoginForm></LoginForm>
+    <main class="grid h-full w-full">
+      <LoginBackground>
+        <section class="h-full grid grid-rows-[auto_1fr]">
+          <header class="px-1rem">
+            <h1>PHOENIX</h1>
+          </header>
+          <div class="flexCenter">
+            <LoginCard>
+              <LoginNews />
+              <LoginForm />
+            </LoginCard>
+          </div>
+        </section>
+      </LoginBackground>
     </main>
   </ThemeConfig>
 </template>
 <script setup lang="ts">
 import { createThemeConfigProvider } from '@/theme';
-import LoginForm from './LoginForm.vue';
-import LoginLogo from './LoginLogo.vue';
-
+import LoginBackground from './modules/background/bg.vue';
+import LoginForm from './modules/form/form.vue';
+import LoginNews from './modules/news/news.vue';
+import LoginCard from './modules/card/card.vue';
 const ThemeConfig = createThemeConfigProvider();
 
 defineOptions({
   name: 'LoginApp',
 });
 </script>
-
-<style scoped>
-.login-layout {
-  --linear-gradient-direction: #130c1a;
-
-  background: var(--linear-gradient-direction);
-}
-</style>

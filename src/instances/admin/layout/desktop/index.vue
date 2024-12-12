@@ -18,7 +18,7 @@ function withTheme() {
   const style = computed(() => {
     return {
       backgroundColor: themeVars.value.tableColor,
-      color: themeVars.value.textColor2
+      color: themeVars.value.textColor2,
     };
   });
   const primaryColor = computed(() => {
@@ -27,18 +27,19 @@ function withTheme() {
   });
   return {
     style,
-    primaryColor
+    primaryColor,
   };
 }
 
 const { style, primaryColor } = withTheme();
-
-
 </script>
 
 <template>
   <main class="h-screen grid main-layout">
-    <section :style="style" class="flex justify-between h-48px top-shadow breathing-element">
+    <section
+      :style="style"
+      class="flex justify-between h-48px top-shadow breathing-element"
+    >
       <div class="flex">
         <div class="flex items-center gap-4px p-l-12px">
           <img
@@ -99,13 +100,15 @@ const { style, primaryColor } = withTheme();
 
 @keyframes breathing {
   0% {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px inset rgb(0 0 0 / 10%);
   }
+
   50% {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 20px inset rgb(0 0 0 / 30%);
   }
+
   100% {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px inset rgb(0 0 0 / 10%);
   }
 }
 </style>

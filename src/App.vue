@@ -1,5 +1,5 @@
 <template>
-  <section id="subApp"></section>
+  <section id="subApp" class="h-full w-full"></section>
 </template>
 
 <script setup lang="ts">
@@ -19,7 +19,7 @@ let instance: App;
  */
 const instanceMap: Map<InstanceType, InstanceRenderFun> = new Map([
   ['login', MountLoginInstance],
-  ['admin', MountAdminInstance] // todo 改成按需导入 首页加载资源更少
+  ['admin', MountAdminInstance], // todo 改成按需导入 首页加载资源更少
 ]);
 
 // 执行挂载函数
@@ -30,7 +30,7 @@ async function executeMountFunction() {
 
   if (instanceMountFunction) {
     instance && instance.unmount(); // 挂载新的实例之前 卸载旧实例
-    await switchTheme('purple'); // 默认紫色主题 //todo 可能需要优化 后面在想想主题的设置
+    await switchTheme('geekblue'); // 默认极客蓝主题 //todo 可能需要优化 后面在想想主题的设置
     instance = await instanceMountFunction();
   }
 }
