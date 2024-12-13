@@ -2,8 +2,8 @@
   <section class="flex justify-center items-center z-1 text-nowrap">
     <div class="rounded-10px flex flex-col">
       <div class="pb-2 text-#aa54ff">
-        <h2 class="m0 text-8 text-#aa54ff">LOG IN TO THE SYSTEM</h2>
-        <span class="text-6">欢迎来到phoenix-admin平台</span>
+        <h2 class="m0 text-8 text-#aa54ff">启其门户，入于系统</h2>
+        <span class="text-6">欢迎来到凤凰平台</span>
       </div>
       <div class="text-left">
         <n-form

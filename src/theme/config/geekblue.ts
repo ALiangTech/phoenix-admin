@@ -22,7 +22,7 @@ const lightThemeOverrides: GlobalThemeOverrides = {
     primaryColorSuppl: '#913094FF',
   },
   Form: {
-    labelTextColor: '#EBEFF3FF',
+    // labelTextColor: '#EBEFF3FF',
   },
   Input: {
     color: '#FFFFFF00',
@@ -41,7 +41,7 @@ const darkThemeOverrides: GlobalThemeOverrides = {
     successColorSuppl: '#d6e4ffFF',
   },
   Form: {
-    labelTextColor: '#EBEFF3FF',
+    // labelTextColor: '#EBEFF3FF',
   },
   Input: {
     color: '#FFFFFF00',
