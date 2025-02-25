@@ -59,12 +59,12 @@ export default defineConfig(({ command }) => {
       open: true, // 打开浏览器
       proxy: {
         '/pf_admin': {
-          target: 'http://localhost:9001',
+          target: 'http://localhost:9000',
           changeOrigin: true,
           rewrite: path => path.replace(/^\/pf_admin/, ''),
         },
         '/pf_login': {
-          target: 'http://localhost:9001',
+          target: 'http://localhost:9000',
           changeOrigin: true,
           rewrite: path => path.replace(/^\/pf_login/, ''),
         },

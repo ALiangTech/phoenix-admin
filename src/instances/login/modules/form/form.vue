@@ -15,14 +15,14 @@
         >
           <n-form-item label="姓名" path="name">
             <n-input
-              v-model:value="formValue.name"
+              v-model:value="formValue.username"
               :allow-input="noSpace"
               placeholder="输入姓名"
             />
           </n-form-item>
           <n-form-item label="密码" path="pwd">
             <n-input
-              v-model:value="formValue.pwd"
+              v-model:value="formValue.password"
               :allow-input="noSpace"
               autocomplete="current-password"
               placeholder="输入密码"
@@ -68,18 +68,18 @@ defineOptions({
 const { modifyInstanceType } = useModifyInstanceType();
 
 interface API_DATA {
-  name: string;
-  pwd: string;
+  username: string;
+  password: string;
 }
 
 const formRef = ref<FormInst | null>(null);
 const rules = {
-  name: {
+  username: {
     required: true,
     message: '请输入姓名',
     trigger: ['submit'],
   },
-  pwd: {
+  password: {
     required: true,
     message: '请输入密码',
     trigger: ['submit'],
@@ -87,8 +87,8 @@ const rules = {
 };
 const loading = ref(false);
 const formValue = reactive<API_DATA>({
-  pwd: '',
-  name: '',
+  password: '',
+  username: '',
 });
 
 function noSpace(value: string) {
@@ -113,7 +113,7 @@ interface LoginResult {
 async function ApiLogin(data: API_DATA) {
   loading.value = true;
   const [, result] = await to<LoginResult, Axios.Error>(
-    http.post('/pf_login/v2/login', data),
+    http.post('/pf_login/api/v1/login', data),
   );
   loading.value = false;
   if (result) {
