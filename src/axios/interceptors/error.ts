@@ -1,5 +1,6 @@
-import type { AxiosInstance } from 'axios';
 import { useDiscrete } from '@/hooks';
+import type { AxiosInstance } from 'axios';
+const SUCCESS_CODE = 0;
 // 错误字典
 const errorDic: Map<number, Function> = new Map();
 errorDic.set(401, async () => {
@@ -15,13 +16,13 @@ errorDic.set(0, (msg: string) => {
 export default function normalizeError(axios: AxiosInstance) {
   // 添加响应拦截器
   axios.interceptors.response.use(
-    async response => {
+    async (response ) => {
       // 2xx 范围内的状态码都会触发该函数。
-      // 检查data中的error是否是null 如果不为null 说明服务端返回的是错误信息
-      const { data } = response;
-      if (data.error) {
-        // 这里给处理掉
-        const errorInfo = await executeErrorHandle({ response: data.error });
+      // 检查data中的code 是否是200 非200 可以认为是错误
+      const { data } = response as Axios.NewAxiosResponse<any,any >; // todo 先用as 强制指定response类型
+      if (data.code !== SUCCESS_CODE) {
+        // 执行错误处理
+        const errorInfo = await executeErrorHandle({ response: {status: 0,  statusText: data.msg} });
         return Promise.reject(errorInfo);
       }
       return Promise.resolve(response);
@@ -55,7 +56,7 @@ function extractErrorCode(error: any) {
  */
 async function executeErrorHandle(error: any) {
   const { code, message } = extractErrorCode(error);
-  const fun = errorDic.get(code) || errorDic.get(0); // 默认走提示
+  const fun = errorDic.get(code) || errorDic.get(0); // 默认走系统提示
   await (fun && fun(message));
   return { code, message };
 }

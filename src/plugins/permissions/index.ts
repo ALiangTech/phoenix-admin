@@ -5,7 +5,7 @@ import type { Options, PermissionSet, PluginInstallFunction } from './types';
 const install: PluginInstallFunction = (app, ...options) => {
   const { permissionSet } = options[0];
   window.$can = checkPermissions.bind(null, permissionSet); // 挂载在window上 js里面也可以访问 不仅仅是vue里面
-  app.config.globalProperties.$can = checkPermissions;
+  app.config.globalProperties.$can = window.$can;
   app.component('HasPermissionControl', HasPermission);
 };
 const permission: Plugin = {

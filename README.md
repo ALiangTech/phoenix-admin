@@ -6,6 +6,12 @@
 
 项目采用多实例模式 整体分离成俩部分： 登录部分 + 业务部分 主要是方便权限计算
 
+### components 组件说明 
+每一个组件开始随着业务发展并不知道是否会被其他地方复用,所以每一个业务文件夹里面都会有一个components
+文件夹用来存放组件,等其他地方确实需要复用的时候在根components 里面创建全局使用的文件夹通过index.js 引用过去
+
+### widgets 业务组件存放的地方 只能在当前业务文件夹里面被使用
+
 ## 渲染流程
 
 [![admin2024-04-28-1654.png](https://i.postimg.cc/XqVCc7Gb/admin2024-04-28-1654.png)](https://i.postimg.cc/XqVCc7Gb/admin2024-04-28-1654.png)
@@ -100,4 +106,8 @@ http://localhost:5173/pf_login/v2/login -> http://localhost:8003/v2/login
 
 ### 待办
 
--[ ] 升级eslint 到eslint9 -[ ] 添加eslint 规则禁止使用localStorage/sessionStorage 只能使用LocalForage -[ ] 添加vite插件处理svg文件 直接导入作为组件使用
+- [ ] 升级eslint 到eslint9
+
+- [ ] 添加eslint 规则禁止使用localStorage/sessionStorage 只能使用LocalForage 
+
+- [ ] 添加vite插件处理svg文件 直接导入作为组件使用

@@ -112,7 +112,7 @@ interface LoginResult {
 
 async function ApiLogin(data: API_DATA) {
   loading.value = true;
-  const [, result] = await to<LoginResult, Axios.Error>(
+  const [, result] = await to<LoginResult>(
     http.post('/pf_login/api/v1/login', data),
   );
   loading.value = false;
