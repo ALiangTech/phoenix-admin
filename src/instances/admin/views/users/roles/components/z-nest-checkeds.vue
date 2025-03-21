@@ -1,10 +1,8 @@
 <script lang="ts">
-import { h, ref } from 'vue';
+import { h } from 'vue';
 import { NCheckbox } from 'naive-ui';
+import { cloneDeep } from 'lodash-es';
 
-interface Checked {
-  [propName: string]: boolean;
-}
 
 interface DataItem {
   label: string;
@@ -53,21 +51,22 @@ export default {
       type: Array,
       required: true,
     },
-    modelValue: {
-      type: Object,
+    value: {
+      type: Array,
       default: () => {
-        return {};
+        return [];
       },
     },
   },
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'update:value'],
   setup(props, { emit }) {
     const data = props.data as DataItem[];
     setChildrenParentValues(data, null);
     setChildChildrenValues(data);
-    const checked = ref<Checked>({});
     function createCheckedVnode(data: DataItem[]): any[] {
       return data.map((item, index) => {
+        const defaultChecked = props.value.includes(item.value);
+        const checked = defaultChecked ? item.value : false;
         return h(
           'div',
           {
@@ -80,26 +79,28 @@ export default {
               h(
                 NCheckbox,
                 {
-                  checked: !!checked.value[item.value],
+                  checked,
+                  defaultChecked,
+                  checkedValue:item.value,
                   onUpdateChecked: v => {
-                    const temp: any = {};
+                    const temp = cloneDeep(props.value)
                     if (v) {
                       // 如果是选中 那么父级也应该选中
                       item.parentValues.forEach(key => {
-                        temp[key] = true;
+                        temp.push(key);
                       });
+                      temp.push(v);
                     } else {
                       // 如果是取消 那么子级也应该取消
                       item.childrenValues.forEach(key => {
-                        temp[key] = false;
+                        const index = temp.indexOf(key);
+                        if (index !== -1) {
+                          delete temp[index];
+                        }
                       });
+                      temp.splice(temp.indexOf(item.value), 1);
                     }
-                    checked.value = {
-                      ...checked.value,
-                      ...temp,
-                      [item.value]: v,
-                    };
-                    emit('update:modelValue', checked.value);
+                    emit('update:value', [...new Set(temp)]);
                   },
                 },
                 {

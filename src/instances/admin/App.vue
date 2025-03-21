@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import { useLayoutType } from '@admin/layout';
-import { createThemeConfigProvider } from '@/theme';
+import { themeContainer } from '@/theme';
 
 defineOptions({
   name: 'APP',
 });
 const { currentLayout } = useLayoutType();
-const ThemeProvider = createThemeConfigProvider();
 </script>
 <template>
-  <ThemeProvider>
+  <themeContainer>
     <component :is="currentLayout"></component>
-  </ThemeProvider>
+  </themeContainer>
 </template>

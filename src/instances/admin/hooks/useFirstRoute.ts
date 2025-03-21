@@ -10,7 +10,6 @@ interface Options {
 export default function useFirstRoute(options: Options) {
   const route = useRoute();
   const router = useRouter();
-  console.log(router.getRoutes(), 'dddd');
   const currentRoute = router
     .getRoutes()
     .find(item => item.name === options.routeName)!;

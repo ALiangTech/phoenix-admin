@@ -1,23 +1,26 @@
 <template>
-  <section class="h-full">
-    <ZDataTable :fetch="loadData"></ZDataTable>
+  <section>
+    <ZDataTableWrapper :title="title" :fetch="loadData" :config="tableConfig"></ZDataTableWrapper>
   </section>
 </template>
-<script lang="ts">
-import { defineComponent } from 'vue';
-import ZDataTable from '@admin/components/z-data-table/index.vue';
+<script setup lang="ts">
 import http from '@/axios';
 
-export default defineComponent({
-  name: 'UserAccounts',
-  components: { ZDataTable },
-  setup() {
-    const loadData = (params: any) => {
-      return http.get('/pf_admin/v1/users', { params });
-    };
-    return {
-      loadData,
-    };
-  },
-});
+const title = '账号管理';
+const loadData = (params: any) => {
+  return http.get('/pf_admin/api/v1/protected/user/account/list', { params });
+};
+const tableConfig = {
+  columns: [
+    {
+      title: '用户名',
+      key: 'name',
+    },
+    {
+      title: '邮箱',
+      key: 'create_at',
+    }
+  ]
+}
+
 </script>

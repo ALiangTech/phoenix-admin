@@ -1,4 +1,6 @@
-// 自动导入注册组件
+/**
+ * 自动导入注册组件
+ */
 import type { App, ComponentOptions } from 'vue';
 
 const modules: Record<string, ComponentOptions> = import.meta.glob(

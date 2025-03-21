@@ -29,7 +29,7 @@ const users: RouteRecordRaw = {
           icon: 'permissions',
         },
       },
-      component: () => import('./roles/roles.vue'),
+      component: () => import('./roles/page/home/index.vue'),
     },
   ],
 };

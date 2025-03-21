@@ -101,7 +101,7 @@ function handleValidateClick(e: MouseEvent) {
     if (!errors) {
       ApiLogin(formValue);
     } else {
-      console.log(errors);
+      console.error(errors);
     }
   });
 }

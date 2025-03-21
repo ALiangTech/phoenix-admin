@@ -5,7 +5,6 @@ import LayoutHeader from '@admin/layout/desktop/header.vue';
 import Breadcrumb from './Breadcrumb.vue';
 import { computed, ref } from 'vue';
 import { useThemeVars } from 'naive-ui';
-import { rgba } from 'seemly';
 
 defineOptions({
   name: 'DesktopLayoutEntry',
@@ -22,7 +21,6 @@ function withTheme() {
     };
   });
   const primaryColor = computed(() => {
-    console.log(rgba(themeVars.value.primaryColor));
     return themeVars.value.primaryColor;
   });
   return {
@@ -68,9 +66,9 @@ const { style, primaryColor } = withTheme();
       >
         <NavMenu class="flex-1"></NavMenu>
       </n-layout-sider>
-      <n-layout-content content-class="flex flex-col">
+      <n-layout-content content-class="flex flex-col gap-4" :content-style="{ backgroundColor: 'var(--gap-color)'}">
         <Breadcrumb></Breadcrumb>
-        <div class="flex-1 overflow-hidden p-2">
+        <div class="flex-1 overflow-hidden grid grid-rows-1 mx-4 mb-4">
           <router-view></router-view>
         </div>
       </n-layout-content>

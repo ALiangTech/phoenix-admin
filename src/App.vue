@@ -1,5 +1,5 @@
 <template>
-  <section id="subApp" class="h-full w-full"></section>
+    <section id="subApp" class="h-full w-full"></section>
 </template>
 
 <script setup lang="ts">
@@ -9,7 +9,6 @@ import type { App } from 'vue';
 import { unref, watchPostEffect } from 'vue';
 import type { InstanceType } from '@/hooks';
 import { useModifyInstanceType } from '@/hooks';
-import { switchTheme } from '@/theme';
 
 const { instanceType } = useModifyInstanceType();
 let instance: App;
@@ -30,7 +29,7 @@ async function executeMountFunction() {
 
   if (instanceMountFunction) {
     instance && instance.unmount(); // 挂载新的实例之前 卸载旧实例
-    await switchTheme('geekblue'); // 默认极客蓝主题 //todo 可能需要优化 后面在想想主题的设置
+    // await switchTheme('geekblue'); // 默认极客蓝主题 //todo 可能需要优化 后面在想想主题的设置
     instance = await instanceMountFunction();
   }
 }

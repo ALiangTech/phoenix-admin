@@ -1,6 +1,6 @@
 <template>
   <!--面包屑-->
-  <section class="h-54px flex items-center">
+  <section class="h-42px py-6px flex items-center" :style="bgStyle">
     <n-breadcrumb>
       <n-breadcrumb-item v-for="item of breadcrumbOptions" :key="item.label">
         <div class="flex items-center gap-1">
@@ -15,6 +15,7 @@
 <script setup lang="ts">
 import { h, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
+import { useModeStyle } from '@admin/hooks'
 
 interface BreadcrumbItem {
   label: string;
@@ -24,6 +25,7 @@ interface BreadcrumbItem {
 defineOptions({
   name: 'LayoutHeader',
 });
+const { bgStyle } = useModeStyle()
 
 function useBreadcrumb() {
   // 面包屑相关的逻辑

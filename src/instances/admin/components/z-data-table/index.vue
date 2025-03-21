@@ -2,7 +2,7 @@
   <UseElementBounding v-slot="{ height }" class="h-full overflow-hidden">
     <div>
       <n-data-table
-        :columns="columns"
+        v-bind="props.config"
         :data="data"
         :pagination="paginationReactive"
         :style="{ height: `${height}px` }"
@@ -15,26 +15,13 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
 import { UseElementBounding } from '@vueuse/components';
+import type { Props } from './interface.ts'
 
 const props = defineProps<Props>();
-
-interface Props {
-  fetch: Function;
-}
 
 defineOptions({
   name: 'ZDataTable',
 });
-const columns = [
-  {
-    title: '昵称',
-    key: 'name',
-  },
-  {
-    title: '创建时间',
-    key: 'createdOn',
-  },
-];
 
 const data = ref([]);
 const paginationReactive = reactive({
@@ -54,9 +41,9 @@ const paginationReactive = reactive({
 
 async function init() {
   const { page, pageSize } = paginationReactive;
-  const { record, pageCount } = await props.fetch({ page, pageSize });
-  data.value = record;
-  paginationReactive.pageCount = pageCount;
+  const { list, total } = await props.fetch({ page, size: pageSize });
+  data.value = list;
+  paginationReactive.pageCount = total;
 }
 
 init();

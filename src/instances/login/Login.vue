@@ -1,5 +1,5 @@
 <template>
-  <ThemeConfig>
+  <themeContainer>
     <main class="grid h-full w-full">
       <LoginBackground>
         <section class="h-full grid grid-rows-[auto_1fr]">
@@ -15,15 +15,14 @@
         </section>
       </LoginBackground>
     </main>
-  </ThemeConfig>
+  </themeContainer>
 </template>
 <script setup lang="ts">
-import { createThemeConfigProvider } from '@/theme';
 import LoginBackground from './modules/background/bg.vue';
 import LoginForm from './modules/form/form.vue';
 import LoginNews from './modules/news/news.vue';
 import LoginCard from './modules/card/card.vue';
-const ThemeConfig = createThemeConfigProvider();
+import { themeContainer } from '@/theme';
 
 defineOptions({
   name: 'LoginApp',

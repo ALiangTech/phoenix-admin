@@ -4,13 +4,12 @@
       <h6 class="py-2 text-6">整体外观</h6>
       <div class="flex flex-wrap gap-4 text-center">
         <template v-for="item of appearances" :key="item.value">
-          <ZLightHover
-            :checked="activeAppearance === item.value"
+          <div
             @click="selectAppearance(item.value)"
           >
             <div class="w-20 h-15" :style="{ background: item.color }"></div>
             <p>{{ item.label }}</p>
-          </ZLightHover>
+          </div>
         </template>
       </div>
     </div>
@@ -18,8 +17,7 @@
       <h6 class="py-2 text-6">主题</h6>
       <div class="flex flex-wrap gap-4 text-center">
         <template v-for="item of theme" :key="item.value">
-          <ZLightHover
-            :checked="activeTheme === item.value"
+          <div
             @click="selectTheme(item.value)"
           >
             <div
@@ -27,7 +25,7 @@
               :style="{ backgroundColor: item.color }"
             ></div>
             <p>{{ item.label }}</p>
-          </ZLightHover>
+          </div>
         </template>
       </div>
     </div>
@@ -35,11 +33,12 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
-import { switchAppearance, switchTheme } from '@/theme';
+import { useThemeStore } from '@/theme';
 import type { Appearance } from '@/theme';
 defineOptions({
   name: 'SettingAdvanced',
 });
+const themeStore = useThemeStore();
 // 整体外观
 interface AppearanceItem {
   label: string;
@@ -54,19 +53,19 @@ const appearances: AppearanceItem[] = [
   },
   {
     label: '浅色',
-    value: 'tint',
+    value: 'light',
     color: '#ededed',
   },
   {
     label: '深色',
-    value: 'deep',
+    value: 'dark',
     color: '#1b1b1b',
   },
 ];
 const activeAppearance = ref('system');
 function selectAppearance(value: Appearance) {
   activeAppearance.value = value;
-  switchAppearance(value);
+  themeStore.switchAppearance(value);
 }
 // 主题
 const theme = [
@@ -134,6 +133,6 @@ const theme = [
 const activeTheme = ref('red');
 function selectTheme(value: string) {
   activeTheme.value = value;
-  switchTheme(value);
+  themeStore.switchTheme(value);
 }
 </script>

@@ -1,60 +1,13 @@
-import { useOsTheme, darkTheme, lightTheme, NConfigProvider } from 'naive-ui';
-import { defineComponent, reactive, h, computed, unref } from 'vue';
-import type { Theme, Appearance } from './theme.type.ts';
-export type { Theme, Appearance } from './theme.type.ts';
-
-// 提供主题变量配置对象
-// 向外提供一个基于naive-ui 的二次封装的主题组件
-// 切换外观 函数
-// 切换主题 函数
-
-const config = reactive<Theme>({
-  appearance: 'system', // 外观
-  theme: lightTheme, // 主题
-  themeOverrides: null, // 主题覆盖
-});
-
-// 基于naive-ui NConfigProvider 组件二次封装
-export function createThemeConfigProvider() {
-  return defineComponent((_, ctx) => {
-    const { slots } = ctx;
-    const osThemeRef = useOsTheme();
-    const activeTheme = computed(() => {
-      const appearance = config.appearance;
-      switch (appearance) {
-        case 'system':
-          return unref(osThemeRef) === 'dark' ? darkTheme : lightTheme;
-        case 'tint':
-          return lightTheme;
-        case 'deep':
-          return darkTheme;
-        default:
-          return lightTheme;
-      }
-    });
-    return () =>
-      h(
-        NConfigProvider,
-        {
-          abstract: true,
-          theme: activeTheme.value,
-          themeOverrides: config.themeOverrides,
-        },
-        slots,
-      );
-  });
-}
-
-/**
- * 切换外观
- * @param appearance
- */
-export function switchAppearance(appearance: Appearance): void {
-  config.appearance = appearance;
-}
-
+import { useOsTheme, darkTheme, lightTheme } from 'naive-ui';
+import { unref,markRaw } from 'vue';
+import { defineStore } from 'pinia'
+import type { State,Overrides } from './type.ts';
+import type { GlobalThemeOverrides } from 'naive-ui';
+import { Appearance,ThemeType,SystemTheme } from './config/const'
+export type { State } from './type.ts';
+export { default as themeContainer} from './components/theme-container.vue'
 // 批量导入颜色主题
-const themeModulePaths = import.meta.glob('./config/*.ts');
+const themeModulePaths = import.meta.glob<Overrides>('./config/theme/*.ts', { import: 'default' });
 const themeModules = Object.fromEntries(
   Object.entries(themeModulePaths).map(([key, value]) => {
     const matchAll = key.match(/\/([^\/]+)\.ts$/);
@@ -62,31 +15,61 @@ const themeModules = Object.fromEntries(
   }),
 );
 
-/**
- * @desc 切换主题
- */
-export async function switchTheme(themeType: string) {
-  const osThemeRef = useOsTheme();
-  const fetch = themeModules[themeType];
-  fetch &&
-    (await fetch().then((overridesConfig: any) => {
-      const { lightThemeOverrides, darkThemeOverrides } =
-        overridesConfig.default as any;
-      function getCurrentOverrideTheme() {
-        const appearance = config.appearance;
-        switch (appearance) {
-          case 'system':
-            return unref(osThemeRef) === 'dark'
-              ? lightThemeOverrides
-              : darkThemeOverrides;
-          case 'tint':
-            return lightThemeOverrides;
-          case 'deep':
-            return darkThemeOverrides;
-          default:
-            return null;
-        }
+// 创建pinia store
+export const useThemeStore = defineStore('theme', {
+  state: (): State => {
+    const osThemeRef = useOsTheme();
+    return {
+      appearance: Appearance.System,
+      osTheme: unref(osThemeRef) as SystemTheme ,
+      themeType: ThemeType.Blue,
+      themeOverrides: {}
+    }
+  },
+  getters: {
+    getTheme(state) {
+      const { appearance, osTheme } = state
+      if (appearance === Appearance.System) {
+        return osTheme === SystemTheme.Dark ? darkTheme : lightTheme
+      } else {
+        return appearance === Appearance.Dark ? darkTheme : lightTheme
       }
-      config.themeOverrides = getCurrentOverrideTheme();
-    }));
-}
+    },
+    getThemeOverride(state): GlobalThemeOverrides | undefined {
+      const { themeOverrides,themeType,appearance,osTheme } = state;
+      const { lightThemeOverrides, darkThemeOverrides } = themeOverrides[themeType] || {};
+      if (appearance === Appearance.System) {
+        return osTheme === SystemTheme.Dark ? darkThemeOverrides : lightThemeOverrides
+      } else {
+        return appearance === Appearance.Dark ? darkThemeOverrides : lightThemeOverrides
+      }
+    }
+  },
+  actions: {
+    // 给html添加data-theme 属性
+    setTheme(): void {
+      const { appearance, osTheme } = this
+      if (appearance === Appearance.System) {
+        document.documentElement.setAttribute('data-theme', osTheme === SystemTheme.Dark ? SystemTheme.Dark  : SystemTheme.Light)
+      } else {
+        document.documentElement.setAttribute('data-theme', appearance === Appearance.Dark ? SystemTheme.Dark  : SystemTheme.Light)
+      }
+    },
+    // 切换外观 暗黑 亮色 or 跟随系统
+    switchAppearance(appearance: Appearance): void {
+      this.appearance = appearance
+      this.setTheme();
+    },
+    // 切换主题 蓝色 绿色 or 灰色
+    async switchTheme(themeType: ThemeType) {
+      const fetch = themeModules[themeType];
+      try {
+        const overridesConfig = await fetch();
+        this.themeType = themeType;
+        this.themeOverrides[themeType] = markRaw<Overrides>(overridesConfig);
+      } catch (e) {
+        console.error(e)
+      }
+    }
+  }
+})
