@@ -24,8 +24,11 @@ export default function normalizeError(axios: AxiosInstance) {
         // 执行错误处理
         const errorInfo = await executeErrorHandle({ response: {status: 0,  statusText: data.msg} });
         return Promise.reject(errorInfo);
+      } else {
+        const { message } = useDiscrete();
+        message.success('操作成功'); // todo 后面接受从服务的返回的提示信息
+        return Promise.resolve(response);
       }
-      return Promise.resolve(response);
     },
     async error => {
       // 对响应错误做点什么

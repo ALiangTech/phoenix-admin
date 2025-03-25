@@ -2,6 +2,8 @@
  * 自动导入注册组件
  */
 import type { App, ComponentOptions } from 'vue';
+export {default as XDataTable} from './z-data-table/index.vue'
+export {default as XDataTableWrapper} from './x-data-table-wrapper/index.vue'
 
 const modules: Record<string, ComponentOptions> = import.meta.glob(
   './**/index.vue',

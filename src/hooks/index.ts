@@ -4,3 +4,4 @@ export {
   useModifyInstanceType,
   type InstanceType,
 } from './useModifyInstanceType';
+export { useInert } from './useInert';

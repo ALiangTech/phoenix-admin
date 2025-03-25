@@ -2,7 +2,8 @@
 import ZDataTable from './index.vue'
 import type { App } from 'vue';
 function install(Vue:App) {
-  Vue.component('ZDataTable', ZDataTable);
-  Vue.component('ZDataTableWrapper', {});
+  Vue.component('XDataTable', ZDataTable);
+  Vue.component('XDataTableWrapper', {});
+  Vue.component('XButton', {});
 }
 console.error(install)

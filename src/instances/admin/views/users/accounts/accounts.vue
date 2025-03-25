@@ -1,6 +1,6 @@
 <template>
   <section>
-    <ZDataTableWrapper :title="title" :fetch="loadData" :config="tableConfig"></ZDataTableWrapper>
+    <XDataTableWrapper :title="title" :fetch="loadData" :config="tableConfig"></XDataTableWrapper>
   </section>
 </template>
 <script setup lang="ts">
