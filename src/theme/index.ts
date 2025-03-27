@@ -32,6 +32,8 @@ export const useThemeStore = defineStore('theme', () => {
     })
    watch(appearance, (newAppearance) => {
      isDark.value = newAppearance === Appearance.Dark
+   }, {
+     immediate: true,
    })
    const handleSwitchProjectAppearance = (appearance: AppearanceType) => {
     projectAppearance.value = appearance
