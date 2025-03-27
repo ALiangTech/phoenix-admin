@@ -33,8 +33,8 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useThemeStore } from '@/theme';
-import type { Appearance } from '@/theme';
+import { useThemeStore, Appearance } from '@/theme';
+import type { AppearanceType, ThemeType } from '@/theme/type';
 defineOptions({
   name: 'SettingAdvanced',
 });
@@ -42,30 +42,30 @@ const themeStore = useThemeStore();
 // 整体外观
 interface AppearanceItem {
   label: string;
-  value: Appearance;
+  value: AppearanceType;
   color: string;
 }
 const appearances: AppearanceItem[] = [
   {
     label: '跟随系统',
-    value: 'system',
+    value: Appearance.System,
     color: 'linear-gradient(45deg, #1b1b1b 50%, #ededed 50%)',
   },
   {
     label: '浅色',
-    value: 'light',
+    value: Appearance.Light,
     color: '#ededed',
   },
   {
     label: '深色',
-    value: 'dark',
+    value: Appearance.Dark,
     color: '#1b1b1b',
   },
 ];
 const activeAppearance = ref('system');
-function selectAppearance(value: Appearance) {
+function selectAppearance(value: AppearanceType) {
   activeAppearance.value = value;
-  themeStore.switchAppearance(value);
+  themeStore.handleSwitchProjectAppearance(value);
 }
 // 主题
 const theme = [
@@ -130,9 +130,9 @@ const theme = [
     color: '#eb2f96',
   },
 ];
-const activeTheme = ref('red');
-function selectTheme(value: string) {
+const activeTheme = ref<ThemeType>('blue');
+function selectTheme(value: ThemeType) {
   activeTheme.value = value;
-  themeStore.switchTheme(value);
+  themeStore.handleSwitchThemeType(value);
 }
 </script>

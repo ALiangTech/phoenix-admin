@@ -1,6 +1,6 @@
 <template>
   <!--面包屑-->
-  <section class="h-42px py-6px flex items-center" :style="bgStyle">
+  <section class="h-42px py-6px flex items-center">
     <n-breadcrumb>
       <n-breadcrumb-item v-for="item of breadcrumbOptions" :key="item.label">
         <div class="flex items-center gap-1">
@@ -25,7 +25,6 @@ interface BreadcrumbItem {
 defineOptions({
   name: 'LayoutHeader',
 });
-const { bgStyle } = useModeStyle()
 
 function useBreadcrumb() {
   // 面包屑相关的逻辑

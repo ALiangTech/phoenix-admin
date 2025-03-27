@@ -1,5 +1,5 @@
 <template>
-  <NConfigProvider abstract :theme="themeStore.getTheme" :theme-overrides="themeStore.getThemeOverride">
+  <NConfigProvider abstract :theme="themeStore.theme" :theme-overrides="themeStore.overrides">
     <slot></slot>
   </NConfigProvider>
 </template>

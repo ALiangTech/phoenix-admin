@@ -34,8 +34,12 @@ const { style, primaryColor } = withTheme();
 
 <template>
   <main class="h-screen grid main-layout">
-    <section
-      :style="style"
+    <n-el
+      tag="section"
+      :style="{
+       transition: '.3s var(--cubic-bezier-ease-in-out)',
+       ...style,
+      }"
       class="flex justify-between h-48px top-shadow breathing-element"
     >
       <div class="flex">
@@ -53,7 +57,7 @@ const { style, primaryColor } = withTheme();
       <div>
         <LayoutHeader></LayoutHeader>
       </div>
-    </section>
+    </n-el>
     <n-layout has-sider>
       <n-layout-sider
         :collapsed="collapsed"
@@ -61,16 +65,28 @@ const { style, primaryColor } = withTheme();
         :width="200"
         :native-scrollbar="false"
         collapse-mode="width"
-        class=""
-        content-style=""
       >
         <NavMenu class="flex-1"></NavMenu>
       </n-layout-sider>
-      <n-layout-content content-class="flex flex-col gap-4" :content-style="{ backgroundColor: 'var(--gap-color)'}">
+      <n-layout-content content-class="flex flex-col" >
         <Breadcrumb></Breadcrumb>
-        <div class="flex-1 overflow-hidden grid grid-rows-1 mx-4 mb-4">
-          <router-view></router-view>
-        </div>
+        <n-el
+          tag="section"
+          class="flex-1 overflow-hidden grid grid-rows-1 p-4"
+          :style="{
+           transition: '.3s var(--cubic-bezier-ease-in-out)',
+           backgroundColor: 'var(--gap-color)',
+          }">
+          <n-el
+            tag="div"
+            class="overflow-hidden grid grid-rows-1"
+            :style="{
+           transition: '.3s var(--cubic-bezier-ease-in-out)',
+           backgroundColor: 'var(--body-color)',
+          }">
+            <router-view></router-view>
+          </n-el>
+        </n-el>
       </n-layout-content>
     </n-layout>
   </main>
@@ -83,13 +99,6 @@ const { style, primaryColor } = withTheme();
 .top-shadow {
   box-shadow: 0 2px 17px -1px v-bind(primaryColor);
   z-index: 4;
-}
-
-.bg-custom {
-  background-image: linear-gradient(180deg, #2d79eb, #af0ce8);
-  height: 24px;
-  width: 24px;
-  border-radius: 2px;
 }
 
 .breathing-element {

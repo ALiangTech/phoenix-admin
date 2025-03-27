@@ -1,22 +1,22 @@
-export enum Appearance {
-  System = 'system',
-  Light = 'light',
-  Dark = 'dark',
-}
+export const Appearance = {
+  System: 'system',
+  Light: 'light',
+  Dark: 'dark',
+} as const;
 
-export enum SystemTheme {
-  Light = 'light',
-  Dark = 'dark',
-}
+export type AppearanceType = typeof Appearance[keyof typeof Appearance];
 
-export enum ThemeType {
-  GeekBlue = 'geekblue',
-  Blue = 'blue',
-  Cyan = 'cyan',
-  Gold = 'gold',
+export const Overrides = {
+  LightThemeOverrides:'lightThemeOverrides',
+  DarkThemeOverrides:'darkThemeOverrides',
 }
+export type OverridesType = typeof Overrides[keyof typeof Overrides];
 
-export enum OverridesType {
-  LightThemeOverrides = 'lightThemeOverrides',
-  DarkThemeOverrides = 'darkThemeOverrides',
-}
+export const Type = {
+  GeekBlue: 'geekblue',
+  Blue: 'blue',
+  Cyan: 'cyan',
+  Gold: 'gold',
+} as const;
+
+export type ThemeType = typeof Type[keyof typeof Type];
