@@ -12,17 +12,14 @@
 </template>
 
 <script lang="ts">
-import type { MenuOption } from 'naive-ui';
 import { RouterLink } from 'vue-router';
 import { h, ref, defineComponent } from 'vue';
 import { useMenuData } from '@/hooks';
-import type { Menu } from '@/plugins';
+import { renderIcon } from '@admin/layout/utils';
 
-function renderIcon(name: string) {
-  // <svg class="iconpark-icon"><use href="#chart-graph"></use></svg>
-  return () =>
-    h('svg', { class: 'iconpark-icon' }, [h('use', { href: `#${name}` })]);
-}
+import type { Menu } from '@/plugins';
+import type { MenuOption } from 'naive-ui';
+
 
 // 构建菜单的options 如果没有children 说明到了最后一级需要执行导航 就是点击需要页面跳转
 // 所以label 就要替换成link 函数
@@ -52,7 +49,7 @@ function createMenuOptions(menu: Menu[]): MenuOption[] {
 }
 
 export default defineComponent({
-  name: 'DesktopMenu',
+  name: 'LayoutNavMenus',
   setup() {
     const data = useMenuData();
     const activeKey = ref(window.location.pathname);

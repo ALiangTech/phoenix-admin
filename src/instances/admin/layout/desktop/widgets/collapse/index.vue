@@ -1,37 +1,26 @@
 <script setup lang="ts">
-import { useThemeVars } from 'naive-ui';
-
 defineOptions({
-  name: 'CollapsibleMenu',
+  name: 'LayoutCollapseMenu',
 });
 const collapsed = defineModel();
-const themeVars = useThemeVars();
 </script>
-
 <template>
-  <div class="flex justify-center items-center">
+  <n-el tag="section" class="flex justify-center items-center">
     <div
-      :class="[
-        'menu',
-        collapsed ? 'collapsed' : 'no-collapsed',
-        'cursor-pointer',
-      ]"
+      :class="['menu',collapsed ? 'collapsed' : 'no-collapsed']"
       @click="collapsed = !collapsed"
     >
       <div class="bar arrow-top"></div>
       <div class="bar arrow-middle"></div>
       <div class="bar arrow-bottom"></div>
     </div>
-  </div>
+  </n-el>
 </template>
-
 <style scoped>
 .menu {
-  --yellow: v-bind('themeVars.primaryColor');
-  --primary-color: v-bind('themeVars.primaryColor');
-
   transition: all 0.7s ease;
   width: 62px;
+  cursor: pointer;
 }
 
 .no-collapsed {
@@ -56,18 +45,18 @@ const themeVars = useThemeVars();
 }
 
 .menu:hover .arrow-top {
-  background: var(--yellow);
+  background: var(--primary-color);
   width: 8px;
   transform: var(--top-transform);
 }
 
 .menu:hover .arrow-middle {
-  background: var(--yellow);
+  background: var(--primary-color);
   transform: var(--middle-transform);
 }
 
 .menu:hover .arrow-bottom {
-  background: var(--yellow);
+  background: var(--primary-color);
   transform: var(--bottom-transform);
   width: 8px;
 }

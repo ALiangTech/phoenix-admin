@@ -13,19 +13,17 @@
 </template>
 
 <script setup lang="ts">
-import { h, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import { useModeStyle } from '@admin/hooks'
-
+import { renderIcon } from '@admin/layout/utils';
+import type { VNode } from 'vue';
 interface BreadcrumbItem {
   label: string;
-  icon: () => JSX.Element;
+  icon: () => VNode;
 }
-
 defineOptions({
-  name: 'LayoutHeader',
+  name: 'LayoutBreadcrumb',
 });
-
 function useBreadcrumb() {
   // 面包屑相关的逻辑
   const route = useRoute();
@@ -56,13 +54,5 @@ function useBreadcrumb() {
     breadcrumbOptions,
   };
 }
-
 const { breadcrumbOptions } = useBreadcrumb();
-
-// todo renderIcon 多个地方被使用 后续抽离出来
-function renderIcon(name: string) {
-  // <svg class="iconpark-icon"><use href="#chart-graph"></use></svg>
-  return () =>
-    h('svg', { class: 'iconpark-icon' }, [h('use', { href: `#${name}` })]);
-}
 </script>

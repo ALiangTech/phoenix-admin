@@ -1,10 +1,10 @@
 import { useOsTheme, darkTheme, lightTheme } from 'naive-ui';
-import {ref,markRaw, computed ,watch} from 'vue';
+import { ref,markRaw, computed ,watch } from 'vue';
 import { defineStore } from 'pinia'
 import { useDark } from '@vueuse/core'
-import type { Overrides } from './type.ts';
 import { Appearance, Type } from './config/const'
 import type { AppearanceType, ThemeType } from './config/const'
+import type { Overrides } from './type.ts';
 
 // 批量导入颜色主题
 const themeModulePaths = import.meta.glob<Overrides>('./config/theme/*.ts', { import: 'default' });
@@ -64,6 +64,7 @@ export const useThemeStore = defineStore('theme', () => {
 
    return {
      appearance,
+     type,
      theme,
      overrides,
      handleSwitchProjectAppearance,
