@@ -42,21 +42,3 @@ const collapsed = ref(true);
     </n-layout>
   </n-el>
 </template>
-<style scoped>
-.breathing-element {
-  animation: breathing 3s infinite ease-in-out;
-}
-@keyframes breathing {
-  0% {
-    box-shadow: 0 0 10px inset rgb(0 0 0 / 10%);
-  }
-
-  50% {
-    box-shadow: 0 0 20px inset rgb(0 0 0 / 30%);
-  }
-
-  100% {
-    box-shadow: 0 0 10px inset rgb(0 0 0 / 10%);
-  }
-}
-</style>
