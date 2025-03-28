@@ -2,9 +2,9 @@
   <themeContainer>
     <main class="grid h-full w-full">
       <LoginBackground>
-        <section class="h-full grid grid-rows-[auto_1fr]">
+        <section class="relative h-full grid grid-rows-[auto_1fr] z-10">
           <header class="px-1rem">
-            <h1>PHOENIX</h1>
+            <n-h1>凤凰平台</n-h1>
           </header>
           <div class="flexCenter">
             <LoginCard>

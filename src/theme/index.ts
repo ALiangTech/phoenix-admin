@@ -64,6 +64,7 @@ export const useThemeStore = defineStore('theme', () => {
 
    return {
      appearance,
+     isDark,
      type,
      theme,
      overrides,
