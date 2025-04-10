@@ -30,8 +30,8 @@ const onClickWrapper = async (e:Event) => {
   try {
     inertState.value.inert();
     loading.value = true;
-    const { onClick } = attrs;
-    await (onClick ?? onClick(e))
+    const { onClick } = {onClick: () => {}, ...attrs}; // 添加默认值onClick 避免报错
+    await onClick(e)
   } catch (error) {
     console.log(error);
   } finally {
