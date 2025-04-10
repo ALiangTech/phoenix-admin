@@ -23,18 +23,21 @@ const attrsWithoutOn = Object.keys(attrs).reduce((acc, key) => {
 }, {} as any);
 
 const loading = ref(false);
-const { inert, unInert} = useInert(document.documentElement, props.disable);
+const inertState = computed(() => {
+  return useInert(document.documentElement, props.disable);
+})
 const onClickWrapper = async (e:Event) => {
   try {
-    inert();
+    inertState.value.inert();
     loading.value = true;
-    await attrs.onClick?.(e);
+    const { onClick } = attrs;
+    await (onClick ?? onClick(e))
   } catch (error) {
     console.log(error);
   } finally {
     setTimeout(() => {
       loading.value = false;
-      unInert();
+      inertState.value.unInert();
     }, 500);
   }
 };
