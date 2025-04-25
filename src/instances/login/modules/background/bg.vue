@@ -20,7 +20,7 @@ const themeStore = useThemeStore();
   top: 0;
   height: 100%;
   width: 100%;
-  background-image: url('@/assets/png/login.png');
+  background-image: url('@/assets/png/login2.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;

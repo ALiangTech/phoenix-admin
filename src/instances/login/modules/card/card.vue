@@ -1,6 +1,6 @@
 <template>
   <div
-    class="h-500px w-720px flex b-1 b-solid b-[rgba(153,153,153,0.28)] b-rounded-0.25rem p-0.5rem"
+    class="h-500px w-50% min-w-360px xl:w-800px flex b-rounded-0.5rem overflow-hidden"
   >
     <div class="w-full flex justify-around">
       <slot></slot>

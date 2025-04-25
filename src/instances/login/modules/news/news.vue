@@ -1,5 +1,5 @@
 <template>
-  <section class="hidden flexCenter xl:flex">
+  <section class="flexCenter xl:flex flex-1 hidden">
     <component :is="LoginNewsText" />
   </section>
 </template>

@@ -1,8 +1,8 @@
 <template>
-  <section class="flex justify-center items-center z-1 text-nowrap">
-    <div class="rounded-10px flex flex-col">
+  <section class="flex-1 flex justify-center items-center z-1 text-nowrap bg-white">
+    <div class="rounded-10px flex flex-col w-80%">
       <div class="pb-2 text-#aa54ff">
-        <h2 class="m0 text-8 text-#aa54ff">启其门户，入于系统</h2>
+        <h2 class="m0 text-8 text-#aa54ff">登录</h2>
         <span class="text-6">欢迎来到凤凰平台</span>
       </div>
       <div class="text-left">
@@ -16,19 +16,29 @@
           <n-form-item label="姓名" path="name">
             <n-input
               v-model:value="formValue.username"
-              :allow-input="noSpace"
+              size="medium"
               placeholder="输入姓名"
-            />
+              :allow-input="noSpace"
+            >
+              <template #prefix>
+                <svg class="w-1.3em h-1.3em text-#9b9b9b"><use href="#home"></use></svg>
+              </template>
+            </n-input>
           </n-form-item>
           <n-form-item label="密码" path="pwd">
             <n-input
               v-model:value="formValue.password"
               :allow-input="noSpace"
+              size="medium"
               autocomplete="current-password"
               placeholder="输入密码"
               type="password"
               show-password-on="click"
-            />
+            >
+              <template #prefix>
+                <svg class="w-1.3em h-1.3em text-#9b9b9b"><use href="#lock"></use></svg>
+              </template>
+            </n-input>
           </n-form-item>
         </n-form>
         <div class="text-right">

@@ -6,10 +6,10 @@
           <header class="px-1rem">
             <n-h1>凤凰平台</n-h1>
           </header>
-          <div class="flexCenter">
-            <LoginCard>
-              <LoginNews />
-              <LoginForm />
+          <div class="flexCenter ">
+            <LoginCard class="bg-white">
+              <LoginNews  />
+              <LoginForm  />
             </LoginCard>
           </div>
         </section>
