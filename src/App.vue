@@ -1,5 +1,5 @@
 <template>
-    <section id="subApp" class="h-full w-full"></section>
+    <main id="subApp" class="h-screen w-screen overflow-auto"></main>
 </template>
 
 <script setup lang="ts">

@@ -1,20 +1,14 @@
 <template>
   <themeContainer>
-    <main class="grid h-full w-full">
-      <LoginBackground>
-        <section class="relative h-full grid grid-rows-[auto_1fr] z-10">
-          <header class="px-1rem">
-            <n-h1>凤凰平台</n-h1>
+      <LoginBackground class="h-full grid grid-rows-[auto_1fr]">
+          <header class="px-4">
+            <n-h1 class="mb-0">凤凰平台</n-h1>
           </header>
-          <div class="flexCenter ">
-            <LoginCard class="bg-white">
-              <LoginNews  />
-              <LoginForm  />
-            </LoginCard>
-          </div>
-        </section>
+          <LoginCard>
+            <LoginNews  />
+            <LoginForm  />
+        </LoginCard>
       </LoginBackground>
-    </main>
   </themeContainer>
 </template>
 <script setup lang="ts">
