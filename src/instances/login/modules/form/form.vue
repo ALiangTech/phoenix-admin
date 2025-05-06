@@ -3,7 +3,7 @@
     <div class="rounded-10px flex flex-col w-80%">
       <div class="pb-2 text-#aa54ff">
         <h2 class="m0 text-8 text-#aa54ff">登录</h2>
-        <span class="text-6">欢迎来到凤凰平台</span>
+        <span class="text-6">PHOENIX 管理系统</span>
       </div>
       <div class="text-left">
         <n-form
