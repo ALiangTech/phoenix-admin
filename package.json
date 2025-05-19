@@ -41,6 +41,7 @@
     "@unocss/transformer-attributify-jsx": "66.1.0-beta.5",
     "@vitejs/plugin-vue": "^5.2.3",
     "@vitejs/plugin-vue-jsx": "^4.1.2",
+    "@vitest/coverage-v8": "3.0.9",
     "@vue/eslint-config-typescript": "^14.5.0",
     "cross-env": "^7.0.3",
     "cypress": "^14.2.1",
