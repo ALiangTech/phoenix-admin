@@ -9,7 +9,7 @@ const collapsed = ref(true);
 </script>
 
 <template>
-  <n-el tag="main" class="h-screen grid grid-rows-[auto_1fr]">
+  <n-el tag="div" class="h-screen grid grid-rows-[auto_1fr]">
     <LayoutHeader v-model="collapsed"></LayoutHeader>
     <n-layout has-sider>
       <n-layout-sider

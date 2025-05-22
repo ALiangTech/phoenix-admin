@@ -1,6 +1,6 @@
 <template>
   <section
-    class="flex justify-between h-48px"
+    class="flex justify-between h-48px bottom-line mb-1px"
     :style="{
        transition: '.3s var(--cubic-bezier-ease-in-out)',
        ...style,

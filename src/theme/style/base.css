@@ -14,3 +14,7 @@
 :root[data-theme="dark"] {
     --gap-color: rgb(38 38 42 / 100%);
 }
+
+.bottom-line {
+    box-shadow: 0 0 0 1px #ccc;
+}

@@ -18,7 +18,7 @@ export default function normalizeError(axios: AxiosInstance) {
   axios.interceptors.response.use(
     async (response ) => {
       // 2xx 范围内的状态码都会触发该函数。
-      // 检查data中的code 是否是200 非200 可以认为是错误
+      // 检查data中的code 是否是0 非0 可以认为是错误
       const { data } = response as Axios.NewAxiosResponse<any,any >; // todo 先用as 强制指定response类型
       if (data.code !== SUCCESS_CODE) {
         // 执行错误处理

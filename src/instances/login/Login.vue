@@ -1,6 +1,6 @@
 <template>
   <themeContainer>
-      <LoginBackground class="h-full grid grid-rows-[1fr] grid-cols-[100%]">
+      <LoginBackground class="h-full flexCenter">
           <LoginCard>
             <LoginNews  />
             <LoginForm  />
