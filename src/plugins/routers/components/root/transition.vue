@@ -14,7 +14,7 @@
   </Transition>
 </template>
 <script setup lang="ts">
-import { gsap } from 'gsap/gsap-core';
+import { gsap } from 'gsap';
 defineOptions({
   name: 'RouterTransition',
 });
