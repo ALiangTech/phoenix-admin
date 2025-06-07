@@ -3,18 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc && vite build",
-    "preview": "vite preview",
-    "eslint": "eslint --ext .js,.ts,.tsx,.vue .",
-    "format": "prettier --write .",
-    "stylelint": "stylelint src/**/*.{css,vue} --fix",
-    "test": "vitest",
-    "coverage": "vitest run --coverage",
-    "cypress:open": "cypress open",
-    "upp": "npx esno ./script/update-package.ts"
-  },
   "dependencies": {
     "@unocss/reset": "66.1.0-beta.5",
     "@vueuse/components": "^13.0.0",
@@ -65,6 +53,18 @@
     "vitest": "^3.0.9",
     "vue-eslint-parser": "9.4.3",
     "vue-tsc": "^2.2.8"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview",
+    "eslint": "eslint --ext .js,.ts,.tsx,.vue .",
+    "format": "prettier --write .",
+    "stylelint": "stylelint src/**/*.{css,vue} --fix",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "cypress:open": "cypress open",
+    "upp": "npx esno ./script/update-package.ts"
   },
   "prettier": {
     "semi": true,
